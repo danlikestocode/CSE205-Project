@@ -1,10 +1,7 @@
-Public class Main {
+class Main {
 
-	public staic void main (String[] args) {
+	public static void main (String[] args) {
 		System.out.print("Hello, World!");
 	}
-
-
-
 
 }
