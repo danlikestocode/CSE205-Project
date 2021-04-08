@@ -6,6 +6,7 @@ public class Main {
         System.out.println("test");
         System.out.println("yo testing this random :");
         app.database.Database.databaseconnect();
+        System.out.println("hello");
     }
     
 }
