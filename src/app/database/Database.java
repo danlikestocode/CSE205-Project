@@ -2,7 +2,7 @@ package app.database;
 import java.sql.*;
 public class Database {
 
-    public static void main(String[] args) {
+    public static void databaseconnect() {
         // TODO Auto-generated method stub
         Connection c = null;
         Statement s = null;
