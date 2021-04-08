@@ -10,7 +10,7 @@ public class Database {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(
-                    "jdbc:postgresql://" + IP.address + "/usersdb", "postgres", "qwerty");
+                    "jdbc:postgresql://" + Keys.address + "/usersdb", Keys.username, Keys.password);
             System.out.println("Connected to the database");
         } catch (Exception e) {
             e.printStackTrace();
