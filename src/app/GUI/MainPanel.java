@@ -28,7 +28,7 @@ public class MainPanel {
         window.getContentPane().setBackground(new Color(241, 250, 238));
         window.setLayout(null);
 
-        //==============Login Screen=============================
+        //==============Login Screen===========================
 
         //The Text that says "CSE 205 Shopping Project"
         loginPanel = new JPanel();

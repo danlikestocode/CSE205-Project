@@ -40,6 +40,7 @@ public class Main {
     public class ChoiceHandler implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();
+            //Changes with your choice with a switch statement
             switch (choice){
                 case "Login": visibilityCheck.showLoginScreen();break;
                 case "Register": visibilityCheck.showRegisterScreen(); break;
