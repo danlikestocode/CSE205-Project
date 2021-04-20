@@ -3,6 +3,7 @@ import app.GUI.MainPanel;
 import app.GUI.VisibilityCheck;
 import app.database.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 public class Main {
     MainPanel ui = new MainPanel();
     ChoiceHandler choiceHandler = new ChoiceHandler();
@@ -16,6 +17,13 @@ public class Main {
         String b = app.database.Database.getString("test.test","test2");
         System.out.println(b);
         System.out.println("YES: On P.C");
+        app.database.Database.searchForString( "users","usernames" , "UNCATCHABLE");
+        Integer[][] toPrint = app.database.Database.return2DArray("cart");
+        System.out.println(toPrint[0][0]);
+        System.out.println(toPrint[0][1]);
+        System.out.println(toPrint[1][0]);
+        System.out.println(toPrint[1][1]);
+        
         new Main(); //GUI is made here
     }
 
