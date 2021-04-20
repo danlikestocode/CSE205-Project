@@ -24,8 +24,7 @@ public class Main {
         visibilityCheck.showLoginScreen();
     }
 
-    public class ChoiceHandler implements  ActionListener{
-        @Override
+    public class ChoiceHandler implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();
             switch (choice){
