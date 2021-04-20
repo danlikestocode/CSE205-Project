@@ -3,6 +3,9 @@ import app.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 public class MainPanel {
     JFrame window;
     JPanel loginPanel,buttonPanel,textPanel;
@@ -28,28 +31,48 @@ public class MainPanel {
 
         //The Text that says "CSE 205 Shopping Project"
         loginPanel = new JPanel();
-        loginPanel.setBounds(200,200,1000,200);
+        loginPanel.setBounds(300,300,800,200);
         loginPanel.setBackground(new Color(241, 250, 238));
-        //loginPanel.setBackground(Color.BLACK); //Used to see where on page
+//        loginPanel.setBackground(Color.RED); //Used to see where on page
         loginTitle = new JLabel("CSE 205 Shopping Project");
         loginTitle.setForeground(Color.BLACK);
         loginTitle.setFont(loginFont);
         loginPanel.add(loginTitle);
 
-        //Still trying to figure out how to use TextFeilds
-//        textPanel = new JPanel();
-//        textPanel.setBounds(500,500,500,400);
-//        textPanel.setBackground(Color.BLACK);
-//        userName.setText("");
-//        userName.setColumns(40);
-//        textPanel.add(userName);
+        //Username TextField that is connected to the loginPanel
+        userName = new JTextField("UserName",20);
+        userName.setFont(buttonFont);
+        userName.setPreferredSize(new Dimension(40,50));
 
+
+        //Password is connected to the login panel
+        passwordField = new JPasswordField("Password");
+        passwordField.setFont(buttonFont);
+        char passwordChar = passwordField.getEchoChar();
+        passwordField.setEchoChar((char)0);
+        passwordField.setText("Password");
+        passwordField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                passwordField.setText("");
+                passwordField.setEchoChar(passwordChar);
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
+        passwordField.setPreferredSize(new Dimension(40,50));
+        passwordField.setColumns(20);
+
+        //Adds the username and password fields to the login panel
+        loginPanel.add(userName);
+        loginPanel.add(passwordField);
 
         //Sets parts for the button panel and buttons
         buttonPanel = new JPanel();
         buttonPanel.setBounds(500,500,400,100);
         buttonPanel.setBackground(new Color(241, 250, 238));
-        //buttonPanel.setBackground(Color.BLACK); //Used to see where on page
+//        buttonPanel.setBackground(Color.BLACK); //Used to see where on page
 
         //Login Button
         loginButton = new JButton("Login");
