@@ -137,6 +137,19 @@ public class Database {
 		return result;
 	}
 	
-
+	public static Integer[][] return2DArray(String columnName){
+		Array fromDatabase;
+		Integer[][] result = null;
+		try {
+		fromDatabase = rs.getArray(columnName);
+		result = (Integer[][])fromDatabase.getArray();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		 
+		return result;
+		
+	}
 
 }
