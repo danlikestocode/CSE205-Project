@@ -51,7 +51,7 @@ public class MainPanel {
         char passwordChar = passwordField.getEchoChar();
         passwordField.setEchoChar((char)0);
         passwordField.setText("Password");
-        passwordField.addFocusListener(new FocusListener() {
+        passwordField.addFocusListener(new FocusListener() {    //Used to show the word password then disapears
             @Override
             public void focusGained(FocusEvent e) {
                 passwordField.setText("");
