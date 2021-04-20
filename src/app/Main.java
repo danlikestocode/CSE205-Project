@@ -8,7 +8,6 @@ public class Main {
         System.out.println(a);
         String b = app.database.Database.getString("test.test","test2");
         System.out.println(b);
-     
+        System.out.println("YES: On P.C");
     }
-    
 }
