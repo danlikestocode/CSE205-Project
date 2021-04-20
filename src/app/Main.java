@@ -1,9 +1,9 @@
 package app;
 import app.GUI.MainPanel;
 import app.GUI.VisibilityCheck;
-import app.database.*;
+
 import java.awt.event.*;
-import java.util.ArrayList;
+
 public class Main {
     MainPanel ui = new MainPanel();
     ChoiceHandler choiceHandler = new ChoiceHandler();
@@ -36,7 +36,8 @@ public class Main {
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();
             switch (choice){
-                case "Login": break;
+                case "Login": visibilityCheck.showLoginScreen();break;
+                case "Register": visibilityCheck.showRegisterScreen(); break;
             }
         }
     }

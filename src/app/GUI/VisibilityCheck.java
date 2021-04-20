@@ -1,15 +1,27 @@
 package app.GUI;
 
 public class VisibilityCheck {
-    MainPanel appUI;
+    MainPanel LoginUI;
 
     //Constructor to set mainPanel by the users input
     public VisibilityCheck(MainPanel userInterface){
-        appUI = userInterface;
+        LoginUI = userInterface;
     }
+
 
     //Sets the GUI Visible
     public void showLoginScreen(){
-        appUI.loginPanel.setVisible(true);
+
+        LoginUI.loginPanel.setVisible(true);
+
+        LoginUI.registerPanel.setVisible(false);
+        LoginUI.registerTextPanel.setVisible(false);
+    }
+
+    public void showRegisterScreen(){
+        LoginUI.loginPanel.setVisible(false);
+
+        LoginUI.registerPanel.setVisible(true);
+        LoginUI.registerTextPanel.setVisible(true);
     }
 }
