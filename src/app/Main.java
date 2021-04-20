@@ -9,5 +9,12 @@ public class Main {
         String b = app.database.Database.getString("test.test","test2");
         System.out.println(b);
         System.out.println("YES: On P.C");
+       String username = "UNCATCHABLE";
+       String usersdt = "users";
+       String usernameColumn = "usernames";
+       
+       app.database.Database.searchForString(usersdt, usernameColumn, username);
+       System.out.println(app.database.Database.returnCurrentString(usernameColumn));
+       
     }
 }

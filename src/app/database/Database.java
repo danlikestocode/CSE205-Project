@@ -5,6 +5,7 @@ import java.sql.*;
 public class Database {
 	static Statement s;
 	static Connection c;
+	static ResultSet rs;
 
 	public static void databaseconnect() {
 		// TODO Auto-generated method stub
@@ -26,7 +27,7 @@ public class Database {
 		int result = 0;
 
 			try {
-				ResultSet rs = s.executeQuery("select * from " + dataTable + ";" );
+				rs = s.executeQuery("select * from " + dataTable + ";" );
 				rs.next();
 				result = rs.getInt(ColumnName);
 			} catch (SQLException e) {
@@ -42,7 +43,7 @@ public class Database {
 		String result = "";
 
 			try {
-				ResultSet rs = s.executeQuery("select * from " + dataTable + ";" );
+				rs = s.executeQuery("select * from " + dataTable + ";" );
 				rs.next();
 				result = rs.getString(ColumnName);
 			} catch (SQLException e) {
@@ -54,6 +55,41 @@ public class Database {
 		return result;
 		
 		
+	}
+	
+	public static void searchForString(String dataTable, String columnName, String searchItem) {
+		boolean match = false;
+		String result = "";
+		try {
+			rs = s.executeQuery("Select * FROM " + dataTable + ";");
+			while(!match) {
+				rs.next();
+				result = rs.getString(columnName);
+				
+				if (result.equals(searchItem)) {
+					match = true;
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void searchForInt(int searchItem) {
+		
+	}
+	
+	public static String returnCurrentString(String columnName) {
+		String result = "";
+		try {
+		result = rs.getString(columnName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 
