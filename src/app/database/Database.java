@@ -125,5 +125,15 @@ public class Database {
 		return result;
 	}
 
+	public static int returnCurrentInt(String columnName) {
+		int result=0;
+		try {
+		result = rs.getInt(columnName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 }
