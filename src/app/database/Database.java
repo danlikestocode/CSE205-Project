@@ -1,6 +1,7 @@
 package app.database;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 //This class is our database controller it contains the methods that read, write and search the database.
 public class Database {
@@ -135,5 +136,7 @@ public class Database {
 		
 		return result;
 	}
+	
+
 
 }
