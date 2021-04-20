@@ -16,7 +16,7 @@ public class Main {
         String b = app.database.Database.getString("test.test","test2");
         System.out.println(b);
         System.out.println("YES: On P.C");
-        new Main();
+        new Main(); //GUI is made here
     }
 
     public Main(){
