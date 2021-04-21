@@ -4,3 +4,5 @@ FinalProject.iml
 .idea/
 .settings/
 src/app/database/Keys.java
+/out/
+/FinalProject/
