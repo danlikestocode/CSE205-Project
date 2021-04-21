@@ -10,7 +10,7 @@ public class Database {
 	static ResultSet rs;
 	
 	public Database () {
-		
+		databaseconnect();
 	}
 
 	// This method connects the database as connection c and statement s which will
@@ -71,7 +71,7 @@ public class Database {
 
 	// searches the selected database for a specified string in a specified column
 	// and database
-	public static void searchForString(String dataTable, String columnName, String searchItem) {
+	public static boolean searchForString(String dataTable, String columnName, String searchItem) {
 		boolean match = false;
 		String result = "";
 		try {
@@ -90,12 +90,14 @@ public class Database {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			match = false;
 		}
+		return match;
 	}
 
 	// searches the selected database for a specified int in a specified column and
 	// database
-	public static void searchForInt(String dataTable, String columnName, int searchItem) {
+	public static boolean searchForInt(String dataTable, String columnName, int searchItem) {
 		boolean match = false;
 		int result;
 		try {
@@ -114,7 +116,9 @@ public class Database {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			match = false;
 		}
+		return match;
 	}
 
 	// returns a string from the input column from the currently selected row of the
@@ -169,6 +173,24 @@ public class Database {
 			successful = false;
 		}
 
+		return successful;
+	}
+	
+	public boolean updateString(String datatable, String columnName, String identifyingID, String newValue) {
+		String identifyingIDColumnName = "";
+		boolean successful = false;
+		if (datatable.equals("users")) {
+			identifyingIDColumnName = "usernames";
+		}
+		
+		try {
+			
+			s.execute("Update "+ datatable+ " set "+columnName+" = \'"+newValue+"\' where "+identifyingIDColumnName+" = \'"+identifyingID+"\';");
+			successful = true;
+			
+		} catch (SQLException e) {
+			successful = false;
+		}
 		return successful;
 	}
 
