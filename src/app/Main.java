@@ -11,24 +11,10 @@ public class Main {
 
     String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
     public static void main(String[] args) {
-        //intializes connection to the database
+        //initializes connection to the database
     	app.database.Database.databaseconnect();
-        int a = app.database.Database.getInt("test.test","test");
-        System.out.println(a);
-        String b = app.database.Database.getString("test.test","test2");
-        System.out.println(b);
-        System.out.println("YES: On P.C");
-       
-        //testing
-        app.database.Database.searchForString( "users","usernames" , "UNCATCHABLE");
-        Integer[][] toPrint = app.database.Database.return2DArray("cart");
-        System.out.println(toPrint[0][0]);
-        System.out.println(toPrint[0][1]);
-        System.out.println(toPrint[1][0]);
-        System.out.println(toPrint[1][1]);
-        boolean test = app.database.Database.createUser("'shopper'","'shopping'","'shopping.gmail.com'","'shop'","'per'","'Buyers'",2);
-        System.out.println(test);
-        
+    	
+    	
         new Main(); //GUI is made here
     }
 

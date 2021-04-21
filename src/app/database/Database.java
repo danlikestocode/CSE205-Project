@@ -1,7 +1,6 @@
 package app.database;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 //This class is our database controller it contains the methods that read, write and search the database.
 public class Database {
@@ -155,28 +154,14 @@ public class Database {
 	public static boolean createUser(String usernames, String password, String email, String fname, String lname,
 			String address, int designation) {
 		boolean successful = false;
-		String result;
 
 		try {
-			rs = s.executeQuery("Select * FROM users;");
-			rs.next();
-			// search the column for the matching string
-			while (rs.next()) {
-				
-				result = rs.getString("usernames");
-				// test result to see if it is a match
-				if (result.equals(usernames)) {
-					successful = false;
-				} else {
-					successful = true;
-				}
-				rs.next();
-			}
+	
 			s.addBatch("Insert into users VALUES (" + usernames + "," + password + "," + email + "," + fname + ","
 					+ lname + "," + address + ", NULL ," + designation + ");");
 			s.executeBatch();
 		} catch (SQLException e) {
-			e.printStackTrace();
+		
 			successful = false;
 		}
 
