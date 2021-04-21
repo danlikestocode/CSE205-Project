@@ -1,4 +1,4 @@
-package app.gui;
+package app.GUI;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

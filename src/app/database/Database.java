@@ -8,6 +8,10 @@ public class Database {
 	static Statement s;
 	static Connection c;
 	static ResultSet rs;
+	
+	public Database () {
+		
+	}
 
 	// This method connects the database as connection c and statement s which will
 	// be
