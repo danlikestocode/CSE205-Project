@@ -8,8 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class LoginWindow {
-    JFrame window;
+public class LoginWindow extends Window {
     JPanel loginPanel,buttonPanel;
     JLabel loginTitle;
     JButton loginButton,registerButton;
@@ -23,29 +22,21 @@ public class LoginWindow {
     //Creates the Main Page which will later change when buttons are clicked
     public LoginWindow() {
 
-        //Window Frame
-        window = new JFrame();
-        window.setSize(1500, 1000);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(new Color(241, 250, 238));
-        window.setLayout(null);
+        super();
 
         //==============Login Screen===========================
 
         //The Text that says "CSE 205 Shopping Project"
-        loginPanel = new JPanel();
-        loginPanel.setBounds(300, 300, 800, 200);
-        loginPanel.setBackground(new Color(241, 250, 238));
 //        loginPanel.setBackground(Color.RED); //Used to see where on page
         loginTitle = new JLabel("CSE 205 Shopping Project");
         loginTitle.setForeground(Color.BLACK);
         loginTitle.setFont(loginFont);
-        loginPanel.add(loginTitle);
+        window.add(loginTitle);
 
         //Username TextField that is connected to the loginPanel
         userName = new JTextField("UserName", 20);
         userName.setFont(buttonFont);
-        userName.setPreferredSize(new Dimension(40, 50));
+        userName.setMaximumSize(new Dimension(400, 50));
         userName.setBorder(new LineBorder(Color.BLACK, 2));
 
 
@@ -66,13 +57,13 @@ public class LoginWindow {
             public void focusLost(FocusEvent e) {
             }
         });
-        passwordField.setPreferredSize(new Dimension(40, 50));
+        passwordField.setMaximumSize(new Dimension(400, 50));
         passwordField.setColumns(20);
         passwordField.setBorder(new LineBorder(Color.BLACK, 2));
 
         //Adds the username and password fields to the login panel
-        loginPanel.add(userName);
-        loginPanel.add(passwordField);
+        window.add(userName);
+        window.add(passwordField);
 
         //Sets parts for the button panel and buttons
         buttonPanel = new JPanel();
@@ -103,10 +94,10 @@ public class LoginWindow {
         buttonPanel.add(registerButton);
 
         //Adds all the panels to the window
-        window.add(loginPanel);
+        //window.add(loginPanel);
         window.add(buttonPanel);
 
-        loginPanel.setVisible(true);
+        //loginPanel.setVisible(true);
         buttonPanel.setVisible(true);
 
 

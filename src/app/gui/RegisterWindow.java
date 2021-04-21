@@ -8,8 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class RegisterWindow {
-    JFrame window;
+public class RegisterWindow extends Window {
     JPanel buttonPanel,registerPanel,registerTextPanel;
     JLabel registerTitle;
     JTextField userName,fName,lName,email;
@@ -23,12 +22,7 @@ public class RegisterWindow {
     //Creates the Main Page which will later change when buttons are clicked
     public RegisterWindow() {
 
-        //Window Frame
-        window = new JFrame();
-        window.setSize(1500, 1000);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(new Color(241, 250, 238));
-        window.setLayout(null);
+        super();
 
         //==============Login Screen===========================
         // I wasn't sure which parts of the Login Screen affected the Register Screen,
@@ -83,7 +77,7 @@ public class RegisterWindow {
 
         //For all the textfields
         registerTextPanel = new JPanel();
-        registerTextPanel.setBounds(300, 200, 1000, 400);
+        registerTextPanel.setMaximumSize(new Dimension(40, 40));
         registerPanel.setBackground(new Color(241, 250, 238));
 //        registerTextPanel.setBackground(Color.red);
 
