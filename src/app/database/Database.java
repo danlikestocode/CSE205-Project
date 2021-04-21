@@ -179,18 +179,20 @@ public class Database {
 	public boolean updateString(String datatable, String columnName, String identifyingID, String newValue) {
 		String identifyingIDColumnName = "";
 		boolean successful = false;
+		//selects the correct ID column for the selected table
 		if (datatable.equals("users")) {
 			identifyingIDColumnName = "usernames";
 		}
 		
 		try {
-			
+			//sends the command to update the specified column in the specified table
 			s.execute("Update "+ datatable+ " set "+columnName+" = \'"+newValue+"\' where "+identifyingIDColumnName+" = \'"+identifyingID+"\';");
 			successful = true;
 			
 		} catch (SQLException e) {
 			successful = false;
 		}
+		//returns whether the update was successful
 		return successful;
 	}
 
