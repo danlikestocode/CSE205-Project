@@ -9,10 +9,9 @@ import java.awt.event.ActionListener;
 public class LoginWindow extends Window {
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
-    //Creates the Main Page which will later change when buttons are clicked
     public LoginWindow() {
-
         super();
+
 
         // TITLE
         label = new JLabel("CSE 205 Shopping Project");
@@ -39,6 +38,7 @@ public class LoginWindow extends Window {
 
         window.add(panel);
 
+
         // PASSWORD
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
@@ -55,6 +55,7 @@ public class LoginWindow extends Window {
         panel.add(passwordField);
 
         window.add(panel);
+
 
         // BUTTONS
         panel = new JPanel();
@@ -84,6 +85,7 @@ public class LoginWindow extends Window {
 
         window.add(panel);
 
+
         window.setVisible(true);    //Sets it visible
     }
 
@@ -93,6 +95,8 @@ public class LoginWindow extends Window {
             //Changes with your choice with a switch statement
             switch (choice){
                 case "Login": /*when the user logs in*/
+                    window.dispose();
+                    new CatalogWindow();
                 break;
                 case "Register":
                     window.dispose();
@@ -101,4 +105,5 @@ public class LoginWindow extends Window {
             }
         }
     }
+
 }
