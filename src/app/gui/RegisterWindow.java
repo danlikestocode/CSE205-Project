@@ -29,133 +29,100 @@ public class RegisterWindow extends Window {
         // so I copied everything that wasn't useless
         // -Ethan
 
-        //Username TextField that is connected to the loginPanel
-        userName = new JTextField("UserName", 20);
-        userName.setFont(buttonFont);
-        userName.setPreferredSize(new Dimension(40, 50));
-        userName.setBorder(new LineBorder(Color.BLACK, 2));
+        //Title: Register
+        label = new JLabel("Register");
+        label.setForeground(Color.BLACK);
+        label.setFont(largeFont);
+        label.setBorder(BorderFactory.createEmptyBorder(30, 10, 50, 10)); //Basically Padding
+        window.add(label);
 
+        //Username
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
 
-        //Password is connected to the login panel
-        passwordField = new JPasswordField("Password");
-        passwordField.setFont(buttonFont);
-        char passwordChar = passwordField.getEchoChar();
-        passwordField.setEchoChar((char) 0);
-        passwordField.setText("Password");
-        passwordField.addFocusListener(new FocusListener() {    //Used to show the word password then disapears
-            @Override
-            public void focusGained(FocusEvent e) {
-                passwordField.setText("");
-                passwordField.setEchoChar(passwordChar);
-            }
+        label = new JLabel("Username ");
+        label.setFont(smallFont);
+        panel.add(label);
 
-            @Override
-            public void focusLost(FocusEvent e) {
-            }
-        });
-        passwordField.setPreferredSize(new Dimension(40, 50));
-        passwordField.setColumns(20);
+        textField = new JTextField();
+        textField.setFont(smallFont);
+        textField.setPreferredSize(new Dimension(400, 50));
+        textField.setMaximumSize(new Dimension(400, 50));
+        textField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(textField);
+
+        window.add(panel);
+
+        // PASSWORD
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("Password ");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        passwordField = new JPasswordField();
+        passwordField.setFont(smallFont);
+        passwordField.setPreferredSize(new Dimension(400, 50));
+        passwordField.setMaximumSize(new Dimension(400, 50));
         passwordField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(passwordField);
+
+        window.add(panel);
+
+        //First Name
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("First Name ");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        textField = new JTextField();
+        textField.setFont(smallFont);
+        textField.setPreferredSize(new Dimension(400, 50));
+        textField.setMaximumSize(new Dimension(400, 50));
+        textField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(textField);
+
+        window.add(panel);
+
+        //Last Name
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("Last Name ");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        textField = new JTextField();
+        textField.setFont(smallFont);
+        textField.setPreferredSize(new Dimension(400, 50));
+        textField.setMaximumSize(new Dimension(400, 50));
+        textField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(textField);
+
+        window.add(panel);
+
+        //Email
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("Email");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        textField = new JTextField();
+        textField.setFont(smallFont);
+        textField.setPreferredSize(new Dimension(400, 50));
+        textField.setMaximumSize(new Dimension(400, 50));
+        textField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(textField);
+
+        window.add(panel);
 
 
-        //Sets parts for the button panel and buttons
-        buttonPanel = new JPanel();
-        buttonPanel.setBounds(500, 500, 400, 100);
-        buttonPanel.setBackground(new Color(241, 250, 238));
-//        buttonPanel.setBackground(Color.BLACK); //Used to see where on page
-
-
-        //=====================Register Panel==================================
-        registerPanel = new JPanel();
-        registerPanel.setBounds(300, 100, 1000, 100);
-        registerPanel.setBackground(new Color(241, 250, 238));
-//        registerPanel.setBackground(Color.RED); //Used to see where on page
-        registerTitle = new JLabel("Register");
-        registerTitle.setForeground(Color.BLACK);
-        registerTitle.setFont(loginFont);
-        registerPanel.add(registerTitle);
-
-        //For all the textfields
-        registerTextPanel = new JPanel();
-        registerTextPanel.setMaximumSize(new Dimension(40, 40));
-        registerPanel.setBackground(new Color(241, 250, 238));
-//        registerTextPanel.setBackground(Color.red);
-
-        //User textfield
-        userName = new JTextField("UserName", 20);
-        userName.setFont(buttonFont);
-        userName.setPreferredSize(new Dimension(40, 50));
-        userName.setBorder(new LineBorder(Color.BLACK, 2));
-
-        //Password field
-        passwordField = new JPasswordField("Password");
-        passwordField.setFont(buttonFont);
-        passwordField.setEchoChar((char) 0);
-        passwordField.setText("Password");
-        passwordField.addFocusListener(new FocusListener() {    //Used to show the word password then disapears
-            @Override
-            public void focusGained(FocusEvent e) {
-                passwordField.setText("");
-                passwordField.setEchoChar(passwordChar);
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-            }
-        });
-        passwordField.setPreferredSize(new Dimension(40, 50));
-        passwordField.setColumns(20);
-        passwordField.setBorder(new LineBorder(Color.BLACK, 2));
-
-        //First name textfield
-        fName = new JTextField("First Name", 20);
-        fName.setFont(buttonFont);
-        fName.setPreferredSize(new Dimension(40, 50));
-        fName.setBorder(new LineBorder(Color.BLACK, 2));
-
-        //Last name textfield
-        lName = new JTextField("Last Name", 20);
-        lName.setFont(buttonFont);
-        lName.setPreferredSize(new Dimension(40, 50));
-        lName.setBorder(new LineBorder(Color.BLACK, 2));
-
-        //Email textfield
-        email = new JTextField("Email Address", 20);
-        email.setFont(buttonFont);
-        email.setPreferredSize(new Dimension(40, 50));
-        email.setBorder(new LineBorder(Color.BLACK, 2));
-
-        //Combobox textfield *Broken and dont know why
-        String positions[] = {"Customer", "Employee", "Manager"};
-        occupation = new JComboBox(positions);
-        occupation.setFont(buttonFont);
-        occupation.setSize(40, 50);
-        occupation.setPreferredSize(new Dimension(40, 50));
-
-
-        //Adds them all to the panel
-        registerTextPanel.add(userName);
-        registerTextPanel.add(passwordField);
-        registerTextPanel.add(fName);
-        registerTextPanel.add(lName);
-        registerTextPanel.add(email);
-        registerTextPanel.add(occupation);
-
-        //Add the registerText panel to the registerPanel
-        registerPanel.add(registerTextPanel);
-
-        //Added them to the window
-        window.add(registerPanel);
-        window.add(registerTextPanel);
-        window.add(buttonPanel);
-
-        //Also Buttons are being weird by poping up and going away
-
-        registerPanel.setVisible(true);
-        registerTextPanel.setVisible(true);
-        buttonPanel.setVisible(true);
-
-        window.setVisible(true);    //Sets it visible
+        window.setVisible(true);
     }
 
     private class ChoiceHandler implements ActionListener {
