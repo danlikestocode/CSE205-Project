@@ -5,18 +5,8 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 public class RegisterWindow extends Window {
-    JPanel buttonPanel,registerPanel,registerTextPanel;
-    JLabel registerTitle;
-    JTextField userName,fName,lName,email;
-    JComboBox occupation;
-    JPasswordField passwordField = new JPasswordField(20);
-    Font loginFont = new Font("Apple Casual",Font.BOLD, 60);
-    Font buttonFont = new Font("Apple Casual",Font.BOLD, 30);
-
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
     //Creates the Main Page which will later change when buttons are clicked

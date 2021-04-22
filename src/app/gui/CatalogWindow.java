@@ -12,17 +12,19 @@ public class CatalogWindow extends Window {
     public CatalogWindow() {
         super();
 
+// HEADER
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
 
         // TITLE
         label = new JLabel("Catalog");
         label.setForeground(Color.BLACK);
         label.setFont(largeFont);
-        window.add(label);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100)); //Basically Padding
+        panel.add(label);
 
 
-        // HEADER
-        panel = new JPanel();
-        panel.setBackground(new Color(241, 250, 238));
+
 
         // Cart
         button = new JButton("Cart");
@@ -84,6 +86,9 @@ public class CatalogWindow extends Window {
             //Changes with your choice with a switch statement
             switch (choice){
                 //TODO
+                case "Cart":
+                    window.dispose();
+                    new CartWindow();
             }
         }
     }
