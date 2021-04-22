@@ -1,4 +1,4 @@
-package app.GUI;
+package app.gui;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -67,7 +67,6 @@ public class LoginWindow extends Window {
 
         //Sets parts for the button panel and buttons
         buttonPanel = new JPanel();
-        buttonPanel.setBounds(500, 500, 400, 100);
         buttonPanel.setBackground(new Color(241, 250, 238));
 //        buttonPanel.setBackground(Color.BLACK); //Used to see where on page
 

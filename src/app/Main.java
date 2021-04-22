@@ -1,5 +1,5 @@
 package app;
-import app.GUI.*;
+import app.gui.*;
 import app.database.*;
 
 public class Main {
@@ -8,12 +8,8 @@ public class Main {
     public static void main(String[] args) {
         //initializes connection to the database
     	System.out.println(database.updateString("users", "fname", "UNCATCHABLE","uncatchable"));
-    	
-        new Main(); //GUI is made here
-    }
 
-    public Main(){
-        new LoginWindow();
+        new LoginWindow(); // GUI
     }
 
 }
