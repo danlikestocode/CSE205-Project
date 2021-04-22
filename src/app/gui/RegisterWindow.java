@@ -33,14 +33,14 @@ public class RegisterWindow extends Window {
         label = new JLabel("Register");
         label.setForeground(Color.BLACK);
         label.setFont(largeFont);
-        label.setBorder(BorderFactory.createEmptyBorder(30, 10, 50, 10)); //Basically Padding
+        label.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10)); //Basically Padding
         window.add(label);
 
         //Username
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        label = new JLabel("Username ");
+        label = new JLabel("Username: ");
         label.setFont(smallFont);
         panel.add(label);
 
@@ -57,7 +57,7 @@ public class RegisterWindow extends Window {
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        label = new JLabel("Password ");
+        label = new JLabel("Password: ");
         label.setFont(smallFont);
         panel.add(label);
 
@@ -74,7 +74,7 @@ public class RegisterWindow extends Window {
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        label = new JLabel("First Name ");
+        label = new JLabel("First Name:");
         label.setFont(smallFont);
         panel.add(label);
 
@@ -91,7 +91,7 @@ public class RegisterWindow extends Window {
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        label = new JLabel("Last Name ");
+        label = new JLabel("Last Name:");
         label.setFont(smallFont);
         panel.add(label);
 
@@ -108,7 +108,7 @@ public class RegisterWindow extends Window {
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        label = new JLabel("Email");
+        label = new JLabel("Email:         ");
         label.setFont(smallFont);
         panel.add(label);
 
@@ -118,6 +118,39 @@ public class RegisterWindow extends Window {
         textField.setMaximumSize(new Dimension(400, 50));
         textField.setBorder(new LineBorder(Color.BLACK, 2));
         panel.add(textField);
+
+        window.add(panel);
+
+
+        //Diffrent Positions
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("Position:    ");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        String position[] = {"Customer", "Employee", "Manager"};
+        comboBox = new JComboBox(position);
+        comboBox.setFont(smallFont);
+        comboBox.setPreferredSize(new Dimension(200,50));
+        comboBox.setMaximumSize(new Dimension(200, 50));
+        comboBox.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(comboBox);
+
+        window.add(panel);
+
+
+        // Register Button
+        button = new JButton("Register");
+        button.setSize(20, 20);
+        button.setBackground(new Color(168, 218, 220));
+        button.setForeground(Color.BLACK);
+        button.setFont(smallFont);
+        button.setFocusPainted(false);
+        button.addActionListener(choiceHandler);
+        button.setActionCommand("Register");
+        panel.add(button);
 
         window.add(panel);
 
