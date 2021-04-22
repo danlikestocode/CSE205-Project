@@ -137,8 +137,12 @@ public class CartWindow extends Window{
             String choice = e.getActionCommand();
             switch (choice){
                 case "Catalog":
-                        window.dispose();
-                        new CatalogWindow();
+                    window.dispose();
+                    new CatalogWindow();
+                    break;
+                case "Logout":
+                    window.dispose();
+                    new LoginWindow();
                     break;
             }
         }

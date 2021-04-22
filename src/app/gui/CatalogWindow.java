@@ -89,6 +89,11 @@ public class CatalogWindow extends Window {
                 case "Cart":
                     window.dispose();
                     new CartWindow();
+                    break;
+                case "Logout":
+                    window.dispose();
+                    new LoginWindow();
+                    break;
             }
         }
     }
