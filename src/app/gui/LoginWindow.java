@@ -9,14 +9,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 public class LoginWindow extends Window {
-    JPanel loginPanel,buttonPanel;
-    JLabel loginTitle;
-    JButton loginButton,registerButton;
-    JTextField userName;
-    JPasswordField passwordField = new JPasswordField(20);
-    Font loginFont = new Font("Apple Casual",Font.BOLD, 60);
-    Font buttonFont = new Font("Apple Casual",Font.BOLD, 30);
-
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
     //Creates the Main Page which will later change when buttons are clicked
@@ -24,81 +16,74 @@ public class LoginWindow extends Window {
 
         super();
 
-        //==============Login Screen===========================
-
-        //The Text that says "CSE 205 Shopping Project"
-//        loginPanel.setBackground(Color.RED); //Used to see where on page
-        loginTitle = new JLabel("CSE 205 Shopping Project");
-        loginTitle.setForeground(Color.BLACK);
-        loginTitle.setFont(loginFont);
-        window.add(loginTitle);
-
-        //Username TextField that is connected to the loginPanel
-        userName = new JTextField("UserName", 20);
-        userName.setFont(buttonFont);
-        userName.setMaximumSize(new Dimension(400, 50));
-        userName.setBorder(new LineBorder(Color.BLACK, 2));
+        // TITLE
+        label = new JLabel("CSE 205 Shopping Project");
+        label.setForeground(Color.BLACK);
+        label.setFont(largeFont);
+        window.add(label);
 
 
-        //Password is connected to the login panel
-        passwordField = new JPasswordField("Password");
-        passwordField.setFont(buttonFont);
-        char passwordChar = passwordField.getEchoChar();
-        passwordField.setEchoChar((char) 0);
-        passwordField.setText("Password");
-        passwordField.addFocusListener(new FocusListener() {    //Used to show the word password then disapears
-            @Override
-            public void focusGained(FocusEvent e) {
-                passwordField.setText("");
-                passwordField.setEchoChar(passwordChar);
-            }
+        // USERNAME
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
 
-            @Override
-            public void focusLost(FocusEvent e) {
-            }
-        });
+        label = new JLabel("Username ");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        textField = new JTextField();
+        textField.setFont(smallFont);
+        textField.setPreferredSize(new Dimension(400, 50));
+        textField.setMaximumSize(new Dimension(400, 50));
+        textField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(textField);
+
+        window.add(panel);
+
+        // PASSWORD
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("Password ");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        passwordField = new JPasswordField();
+        passwordField.setFont(smallFont);
+        passwordField.setPreferredSize(new Dimension(400, 50));
         passwordField.setMaximumSize(new Dimension(400, 50));
-        passwordField.setColumns(20);
         passwordField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(passwordField);
 
-        //Adds the username and password fields to the login panel
-        window.add(userName);
-        window.add(passwordField);
+        window.add(panel);
 
-        //Sets parts for the button panel and buttons
-        buttonPanel = new JPanel();
-        buttonPanel.setBackground(new Color(241, 250, 238));
-//        buttonPanel.setBackground(Color.BLACK); //Used to see where on page
+        // BUTTONS
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
 
-        //Login Button
-        loginButton = new JButton("Login");
-        loginButton.setSize(20, 20);
-        loginButton.setBackground(new Color(168, 218, 220));
-        loginButton.setForeground(Color.BLACK);
-        loginButton.setFont(buttonFont);
-        loginButton.setFocusPainted(false);
-        loginButton.addActionListener(choiceHandler);
-        loginButton.setActionCommand("Login");
-        buttonPanel.add(loginButton);
+        // Login Button
+        button = new JButton("Login");
+        button.setSize(20, 20);
+        button.setBackground(new Color(168, 218, 220));
+        button.setForeground(Color.BLACK);
+        button.setFont(smallFont);
+        button.setFocusPainted(false);
+        button.addActionListener(choiceHandler);
+        button.setActionCommand("Login");
+        panel.add(button);
 
-        //Register Button
-        registerButton = new JButton("Register");
-        registerButton.setSize(20, 20);
-        registerButton.setBackground(new Color(168, 218, 220));
-        registerButton.setForeground(Color.BLACK);
-        registerButton.setFont(buttonFont);
-        registerButton.setFocusPainted(false);
-        registerButton.addActionListener(choiceHandler);
-        registerButton.setActionCommand("Register");
-        buttonPanel.add(registerButton);
+        // Register Button
+        button = new JButton("Register");
+        button.setSize(20, 20);
+        button.setBackground(new Color(168, 218, 220));
+        button.setForeground(Color.BLACK);
+        button.setFont(smallFont);
+        button.setFocusPainted(false);
+        button.addActionListener(choiceHandler);
+        button.setActionCommand("Register");
+        panel.add(button);
 
-        //Adds all the panels to the window
-        //window.add(loginPanel);
-        window.add(buttonPanel);
-
-        //loginPanel.setVisible(true);
-        buttonPanel.setVisible(true);
-
+        window.add(panel);
 
         window.setVisible(true);    //Sets it visible
     }
