@@ -1,23 +1,22 @@
 package app.gui;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CartWindow extends Window{
+public class PendingOrders extends Window{
+
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
-    public CartWindow(){
+    public PendingOrders(){
         super();
 
         // Panel that holds the title and the buttons
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        // TITLE
-        label = new JLabel("Shopping Cart");
+        label = new JLabel("Pending Orders");
         label.setForeground(Color.BLACK);
         label.setFont(largeFont);
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100)); //Basically Padding
@@ -25,6 +24,7 @@ public class CartWindow extends Window{
 
         // Catalog Button
         button = new JButton("Catalog");
+        // button.setHorizontalAlignment(0);
         button.setSize(20, 20);
         button.setBackground(new Color(168, 218, 220));
         button.setForeground(Color.BLACK);
@@ -54,16 +54,33 @@ public class CartWindow extends Window{
 
         window.add(panel);
 
-        itemQuantity("Apple", 4);
-        itemQuantity("Pear", 2);
-        itemQuantity("Soda", 1);
+        product(234543532, 3.5);
+        product(1234324,4.8);
 
-        // BUTTONS
+        window.setVisible(true);
+    }
+
+    public void product(int orderId, double costOfProduct){
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        // Login Button
-        button = new JButton("Checkout");
+        int orderID = orderId;
+        label = new JLabel("Order ID:"+ orderID);
+        label.setForeground(Color.BLACK);
+        label.setFont(smallFont);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20)); //Basically Padding
+
+        panel.add(label);
+
+        double cost = costOfProduct;
+        label = new JLabel("Cost: $" + cost);
+        label.setForeground(Color.BLACK);
+        label.setFont(smallFont);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 50)); //Basically Padding
+        panel.add(label);
+
+        // Catalog Button
+        button = new JButton("Approve");
         // button.setHorizontalAlignment(0);
         button.setSize(20, 20);
         button.setBackground(new Color(168, 218, 220));
@@ -71,55 +88,7 @@ public class CartWindow extends Window{
         button.setFont(smallFont);
         button.setFocusPainted(false);
         button.addActionListener(choiceHandler);
-        button.setActionCommand("Checkout");
-        panel.add(button);
-
-        window.add(panel);
-
-        window.setVisible(true);    //Sets it visible
-    }
-
-    //Method to add items into the gui
-    public void itemQuantity(String name, int quantity){
-        // Item
-        panel = new JPanel();
-        panel.setBackground(new Color(241, 250, 238));
-
-        String item = name;
-        label = new JLabel("Item: " + item);
-        label.setFont(smallFont);
-        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 50)); //Basically Padding
-        panel.add(label);
-        window.add(panel);
-
-        //Quantity
-        int amount = quantity;
-        label = new JLabel("Quantity: " + amount);
-        label.setFont(smallFont);
-        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 50)); //Basically Padding
-        panel.add(label);
-        window.add(panel);
-
-        // Add to item Button
-        button = new JButton("+1");
-        button.setSize(10, 10);
-        button.setBackground(new Color(168, 218, 220));
-        button.setForeground(Color.BLACK);
-        button.setFont(smallFont);
-        button.setFocusPainted(false);
-        button.addActionListener(choiceHandler);
-        button.setActionCommand("addItem");
-        panel.add(button);
-
-        // Subtract to item Button
-        button = new JButton("-1");
-        button.setSize(10, 10);
-        button.setBackground(new Color(168, 218, 220));
-        button.setForeground(Color.BLACK);
-        button.setFont(smallFont);
-        button.setFocusPainted(false);
-        button.addActionListener(choiceHandler);
-        button.setActionCommand("subtractItem");
+        button.setActionCommand("Approve");
         panel.add(button);
 
         window.add(panel);
@@ -138,9 +107,6 @@ public class CartWindow extends Window{
                     window.dispose();
                     new LoginWindow();
                     break;
-                case "Checkout":
-                    window.dispose();
-                    new PendingOrders();
             }
         }
     }
