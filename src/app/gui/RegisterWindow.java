@@ -163,7 +163,11 @@ public class RegisterWindow extends Window {
             String choice = e.getActionCommand();
             //Changes with your choice with a switch statement
             switch (choice){
-
+                case "Register":
+                    window.dispose();
+                    new CatalogWindow();    //Sends them to catalog after registering
+                    //new LoginWindow();    //Or we could send them to the login screen
+                break;
             }
         }
     }
