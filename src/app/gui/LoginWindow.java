@@ -18,6 +18,7 @@ public class LoginWindow extends Window {
         label = new JLabel("CSE 205 Shopping Project");
         label.setForeground(Color.BLACK);
         label.setFont(largeFont);
+        label.setBorder(BorderFactory.createEmptyBorder(30, 10, 50, 10)); //Basically Padding
         window.add(label);
 
 
