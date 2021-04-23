@@ -165,9 +165,10 @@ public class Database {
 
 		try {
 	
-			s.addBatch("Insert into users VALUES (" + usernames + "," + password + "," + email + "," + fname + ","
-					+ lname + "," + address + ", NULL ," + designation + ");");
+			s.addBatch("Insert into users VALUES ('" + usernames + "','" + password + "','" + email + "','" + fname + "','"
+					+ lname + "','" + address + "', NULL ," + designation + ");");
 			s.executeBatch();
+			successful = true;
 		} catch (SQLException e) {
 		
 			successful = false;

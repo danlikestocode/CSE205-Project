@@ -11,9 +11,11 @@ import java.awt.event.ActionListener;
 public class RegisterWindow extends Window {
     ButtonHandler buttonHandler = new ButtonHandler();
 
-    JTextField usernameTextField, firstNameTextField, lastNameTextField, emailTextField;
+    JTextField usernameTextField, firstNameTextField, lastNameTextField, emailTextField, addressTextField;
     JPasswordField passwordField;
     JComboBox positionComboBox;
+
+    JLabel errorLabel;
 
     //Creates the Main Page which will later change when buttons are clicked
     public RegisterWindow() {
@@ -119,6 +121,24 @@ public class RegisterWindow extends Window {
         window.add(panel);
 
 
+        //Email
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("Address:       ");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        addressTextField = new JTextField();
+        addressTextField.setFont(smallFont);
+        addressTextField.setPreferredSize(new Dimension(400, 50));
+        addressTextField.setMaximumSize(new Dimension(400, 50));
+        addressTextField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(addressTextField);
+
+        window.add(panel);
+
+
         //Diffrent Positions
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
@@ -151,6 +171,18 @@ public class RegisterWindow extends Window {
 
         window.add(panel);
 
+        // Error Label
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        errorLabel = new JLabel("Error: Username already exists");
+        errorLabel.setFont(smallFont);
+        errorLabel.setVisible(false);
+        panel.add(errorLabel);
+
+
+        window.add(panel);
+
 
         window.setVisible(true);
 
@@ -162,9 +194,23 @@ public class RegisterWindow extends Window {
             //Changes with your choice with a switch statement
             switch (choice){
                 case "Register":
-                    window.dispose();
-                    //new CatalogWindow();    //Sends them to catalog after registering
-                    new LoginWindow();    //Or we could send them to the login screen
+
+                    Boolean create = Database.createUser(usernameTextField.getText(), new String(passwordField.getPassword()),
+                        emailTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(),
+                        addressTextField.getText(), positionComboBox.getSelectedIndex());
+
+                    System.out.println(create);
+
+                    if (!create) {
+                        //failed to create the user
+                        //this occurs when a user with the same username already exists
+                        errorLabel.setVisible(true);
+                    } else {
+                        window.dispose();
+                        //new CatalogWindow();    //Sends them to catalog after registering
+                        new LoginWindow();    //Or we could send them to the login screen
+                    }
+
                 break;
             }
         }
