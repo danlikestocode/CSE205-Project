@@ -1,6 +1,7 @@
 package app.database;
 
 import java.sql.*;
+import java.util.*;
 
 //This class is our database controller it contains the methods that read, write and search the database.
 public class Database {
@@ -8,8 +9,8 @@ public class Database {
 	static Statement s;
 	static Connection c;
 	static ResultSet rs;
-	
-	public Database () {
+
+	public Database() {
 		databaseconnect();
 	}
 
@@ -144,7 +145,7 @@ public class Database {
 
 		return result;
 	}
-	
+
 	public static double returnCurrentDouble(String columnName) {
 		double result = 0;
 		try {
@@ -171,23 +172,23 @@ public class Database {
 	}
 
 	public static boolean createUser(String usernames, String password, String email, String fname, String lname,
-			String address, int designation) {
+									 String address, int designation) {
 		boolean successful = false;
 
 		try {
-	
+
 			s.addBatch("Insert into users VALUES ('" + usernames + "','" + password + "','" + email + "','" + fname + "','"
 					+ lname + "','" + address + "', NULL ," + designation + ");");
 			s.executeBatch();
 			successful = true;
 		} catch (SQLException e) {
-		
+
 			successful = false;
 		}
 
 		return successful;
 	}
-	
+
 	public boolean updateString(String datatable, String columnName, String identifyingID, String newValue) {
 		String identifyingIDColumnName = "";
 		boolean successful = false;
@@ -195,32 +196,44 @@ public class Database {
 		if (datatable.equals("users")) {
 			identifyingIDColumnName = "usernames";
 		}
-		
+
 		try {
 			//sends the command to update the specified column in the specified table
-			s.execute("Update "+ datatable+ " set "+columnName+" = \'"+newValue+"\' where "+identifyingIDColumnName+" = \'"+identifyingID+"\';");
+			s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + identifyingIDColumnName + " = \'" + identifyingID + "\';");
 			successful = true;
-			
+
 		} catch (SQLException e) {
 			successful = false;
 		}
 		//returns whether the update was successful
 		return successful;
 	}
-	
-	public boolean createProduct(String productName,int stock, double price, String description) {
+
+	public boolean createProduct(String productName, int stock, double price, String description) {
 		boolean successful = false;
-		
+
 		try {
-			
-			s.execute("Insert into products (productname, stock, price, description) VALUES ('"+productName+"',"+stock+","+price+",'"+description+"');");
+
+			s.execute("Insert into products (productname, stock, price, description) VALUES ('" + productName + "'," + stock + "," + price + ",'" + description + "');");
 			successful = true;
-			
+
 		} catch (SQLException e) {
 			successful = false;
 		}
-		
+
 		return successful;
 	}
 
+
+	public static ResultSet productResultSet(String search) {
+
+		try {
+			rs = s.executeQuery("select * from products where productname ~* '" + search + "'; ");
+			// ~ means "includes" and the * means it's not case-sensitive
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return rs;
+	}
 }
