@@ -1,5 +1,7 @@
 package app.gui;
 
+import app.database.Database;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -12,6 +14,8 @@ public class LoginWindow extends Window {
 
     JTextField userName;
     JPasswordField passwordField;
+
+    JLabel errorLabel;
 
     public LoginWindow() {
         super();
@@ -89,6 +93,18 @@ public class LoginWindow extends Window {
 
         window.add(panel);
 
+        // Error Label
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        errorLabel = new JLabel("Error: Incorrect password");
+        errorLabel.setFont(smallFont);
+        errorLabel.setVisible(false);
+        panel.add(errorLabel);
+
+
+        window.add(panel);
+
 
         window.setVisible(true);    //Sets it visible
     }
@@ -99,8 +115,27 @@ public class LoginWindow extends Window {
             //Changes with your choice with a switch statement
             switch (choice){
                 case "Login": /*when the user logs in*/
-                    window.dispose();
-                    new CatalogWindow();
+
+                    String password = "";
+
+                    if (!userName.getText().equals("") && !new String(passwordField.getPassword()).equals("")) {
+                        Boolean success = Database.searchForString("users", "usernames", userName.getText());
+                        if (success) password = Database.returnCurrentString("passwords");
+                    } else {
+                        errorLabel.setText("Error: Please enter a username and password");
+                        errorLabel.setVisible(true);
+                        break;
+                    }
+
+                    if (password.equals(new String(passwordField.getPassword()))) {
+                        window.dispose();
+                        new CatalogWindow();
+                    } else {
+                        errorLabel.setText("Error: Incorrect password");
+                        errorLabel.setVisible(true);
+                        break;
+                    }
+
                 break;
                 case "Register":
                     window.dispose();

@@ -9,6 +9,7 @@ public abstract class Window {
     protected JPanel panel;
     protected JLabel label;
     protected JButton button;
+    // text fields should be unique, so not initialized here
 
     protected Font largeFont = new Font("Apple Casual",Font.BOLD, 60);
     protected Font smallFont = new Font("Apple Casual",Font.BOLD, 30);
