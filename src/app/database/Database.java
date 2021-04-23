@@ -144,6 +144,17 @@ public class Database {
 
 		return result;
 	}
+	
+	public static double returnCurrentDouble(String columnName) {
+		double result = 0;
+		try {
+			result = rs.getDouble(columnName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 	public static Integer[][] return2DArray(String columnName) {
 		Array fromDatabase;
