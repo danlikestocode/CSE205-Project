@@ -10,9 +10,10 @@ import java.awt.event.ActionListener;
 
 public class RegisterWindow extends Window {
     ButtonHandler buttonHandler = new ButtonHandler();
-    TextHandler textHandler = new TextHandler();
 
-    String username;
+    JTextField usernameTextField, firstNameTextField, lastNameTextField, emailTextField;
+    JPasswordField passwordField;
+    JComboBox positionComboBox;
 
     //Creates the Main Page which will later change when buttons are clicked
     public RegisterWindow() {
@@ -39,12 +40,12 @@ public class RegisterWindow extends Window {
         label.setFont(smallFont);
         panel.add(label);
 
-        textField = new JTextField();
-        textField.setFont(smallFont);
-        textField.setPreferredSize(new Dimension(400, 50));
-        textField.setMaximumSize(new Dimension(400, 50));
-        textField.setBorder(new LineBorder(Color.BLACK, 2));
-        panel.add(textField);
+        usernameTextField = new JTextField();
+        usernameTextField.setFont(smallFont);
+        usernameTextField.setPreferredSize(new Dimension(400, 50));
+        usernameTextField.setMaximumSize(new Dimension(400, 50));
+        usernameTextField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(usernameTextField);
 
 
         window.add(panel);
@@ -74,12 +75,12 @@ public class RegisterWindow extends Window {
         label.setFont(smallFont);
         panel.add(label);
 
-        textField = new JTextField();
-        textField.setFont(smallFont);
-        textField.setPreferredSize(new Dimension(400, 50));
-        textField.setMaximumSize(new Dimension(400, 50));
-        textField.setBorder(new LineBorder(Color.BLACK, 2));
-        panel.add(textField);
+        firstNameTextField = new JTextField();
+        firstNameTextField.setFont(smallFont);
+        firstNameTextField.setPreferredSize(new Dimension(400, 50));
+        firstNameTextField.setMaximumSize(new Dimension(400, 50));
+        firstNameTextField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(firstNameTextField);
 
         window.add(panel);
 
@@ -91,12 +92,12 @@ public class RegisterWindow extends Window {
         label.setFont(smallFont);
         panel.add(label);
 
-        textField = new JTextField();
-        textField.setFont(smallFont);
-        textField.setPreferredSize(new Dimension(400, 50));
-        textField.setMaximumSize(new Dimension(400, 50));
-        textField.setBorder(new LineBorder(Color.BLACK, 2));
-        panel.add(textField);
+        lastNameTextField = new JTextField();
+        lastNameTextField.setFont(smallFont);
+        lastNameTextField.setPreferredSize(new Dimension(400, 50));
+        lastNameTextField.setMaximumSize(new Dimension(400, 50));
+        lastNameTextField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(lastNameTextField);
 
         window.add(panel);
 
@@ -108,12 +109,12 @@ public class RegisterWindow extends Window {
         label.setFont(smallFont);
         panel.add(label);
 
-        textField = new JTextField();
-        textField.setFont(smallFont);
-        textField.setPreferredSize(new Dimension(400, 50));
-        textField.setMaximumSize(new Dimension(400, 50));
-        textField.setBorder(new LineBorder(Color.BLACK, 2));
-        panel.add(textField);
+        emailTextField = new JTextField();
+        emailTextField.setFont(smallFont);
+        emailTextField.setPreferredSize(new Dimension(400, 50));
+        emailTextField.setMaximumSize(new Dimension(400, 50));
+        emailTextField.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(emailTextField);
 
         window.add(panel);
 
@@ -127,12 +128,12 @@ public class RegisterWindow extends Window {
         panel.add(label);
 
         String position[] = {"Customer", "Employee", "Manager"};
-        comboBox = new JComboBox(position);
-        comboBox.setFont(smallFont);
-        comboBox.setPreferredSize(new Dimension(200,50));
-        comboBox.setMaximumSize(new Dimension(200, 50));
-        comboBox.setBorder(new LineBorder(Color.BLACK, 2));
-        panel.add(comboBox);
+        positionComboBox = new JComboBox(position);
+        positionComboBox.setFont(smallFont);
+        positionComboBox.setPreferredSize(new Dimension(200,50));
+        positionComboBox.setMaximumSize(new Dimension(200, 50));
+        positionComboBox.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(positionComboBox);
 
         window.add(panel);
 
