@@ -7,12 +7,11 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.PasswordAuthentication;
 
 public class LoginWindow extends Window {
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
-    JTextField userName;
+    JTextField usernameTextField;
     JPasswordField passwordField;
 
     JLabel errorLabel;
@@ -37,12 +36,14 @@ public class LoginWindow extends Window {
         label.setFont(smallFont);
         panel.add(label);
 
-        userName = new JTextField();
-        userName.setFont(smallFont);
-        userName.setPreferredSize(new Dimension(400, 50));
-        userName.setMaximumSize(new Dimension(400, 50));
-        userName.setBorder(new LineBorder(Color.BLACK, 2));
-        panel.add(userName);
+        usernameTextField = new JTextField();
+        usernameTextField.setFont(smallFont);
+        usernameTextField.setPreferredSize(new Dimension(400, 50));
+        usernameTextField.setMaximumSize(new Dimension(400, 50));
+        usernameTextField.setBorder(new LineBorder(Color.BLACK, 2));
+        usernameTextField.addActionListener(choiceHandler); // pressing enter also attempts to log in
+        usernameTextField.setActionCommand("Login");
+        panel.add(usernameTextField);
 
         window.add(panel);
 
@@ -60,6 +61,8 @@ public class LoginWindow extends Window {
         passwordField.setPreferredSize(new Dimension(400, 50));
         passwordField.setMaximumSize(new Dimension(400, 50));
         passwordField.setBorder(new LineBorder(Color.BLACK, 2));
+        passwordField.addActionListener(choiceHandler);
+        passwordField.setActionCommand("Login");
         panel.add(passwordField);
 
         window.add(panel);
@@ -118,8 +121,10 @@ public class LoginWindow extends Window {
 
                     String password = "";
 
-                    if (!userName.getText().equals("") && !new String(passwordField.getPassword()).equals("")) {
-                        Boolean success = Database.searchForString("users", "usernames", userName.getText());
+                    if (!usernameTextField.getText().equals("") && !new String(passwordField.getPassword()).equals("")) {
+                        //If both the username and password boxes are filled
+                        // this line below is giving a postgres error, idk why but it still works
+                        Boolean success = Database.searchForString("users", "usernames", usernameTextField.getText());
                         if (success) password = Database.returnCurrentString("passwords");
                     } else {
                         errorLabel.setText("Error: Please enter a username and password");
@@ -128,6 +133,7 @@ public class LoginWindow extends Window {
                     }
 
                     if (password.equals(new String(passwordField.getPassword()))) {
+                        //If the database password is equal to the user input
                         window.dispose();
                         new CatalogWindow();
                     } else {

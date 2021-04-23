@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PendingOrders extends Window{
+public class PendingOrdersWindow extends Window{
 
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
-    public PendingOrders(){
+    public PendingOrdersWindow(){
         super();
 
         // Panel that holds the title and the buttons
