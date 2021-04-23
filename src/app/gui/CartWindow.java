@@ -83,7 +83,8 @@ public class CartWindow extends Window{
     public void itemQuantity(String name, int quantity){
         // Item
         panel = new JPanel();
-        panel.setBackground(new Color(241, 250, 238));
+        panel.setBackground(new Color(211,211,211));
+        panel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         String item = name;
         label = new JLabel("Item: " + item);

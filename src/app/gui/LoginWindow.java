@@ -5,9 +5,13 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.PasswordAuthentication;
 
 public class LoginWindow extends Window {
     ChoiceHandler choiceHandler = new ChoiceHandler();
+
+    JTextField userName;
+    JPasswordField passwordField;
 
     public LoginWindow() {
         super();
@@ -29,12 +33,12 @@ public class LoginWindow extends Window {
         label.setFont(smallFont);
         panel.add(label);
 
-        textField = new JTextField();
-        textField.setFont(smallFont);
-        textField.setPreferredSize(new Dimension(400, 50));
-        textField.setMaximumSize(new Dimension(400, 50));
-        textField.setBorder(new LineBorder(Color.BLACK, 2));
-        panel.add(textField);
+        userName = new JTextField();
+        userName.setFont(smallFont);
+        userName.setPreferredSize(new Dimension(400, 50));
+        userName.setMaximumSize(new Dimension(400, 50));
+        userName.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(userName);
 
         window.add(panel);
 

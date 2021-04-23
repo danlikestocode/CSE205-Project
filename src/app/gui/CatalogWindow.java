@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 public class CatalogWindow extends Window {
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
+    JTextField search;
     public CatalogWindow() {
         super();
 
@@ -56,12 +57,12 @@ public class CatalogWindow extends Window {
         panel.setBackground(new Color(241, 250, 238));
 
         // Text Field
-        textField = new JTextField();
-        textField.setFont(smallFont);
-        textField.setPreferredSize(new Dimension(400, 50));
-        textField.setMaximumSize(new Dimension(400, 50));
-        textField.setBorder(new LineBorder(Color.BLACK, 2));
-        panel.add(textField);
+        search = new JTextField();
+        search.setFont(smallFont);
+        search.setPreferredSize(new Dimension(400, 50));
+        search.setMaximumSize(new Dimension(400, 50));
+        search.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(search);
 
         // Button
         button = new JButton("Search");

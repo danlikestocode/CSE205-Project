@@ -62,7 +62,8 @@ public class PendingOrders extends Window{
 
     public void product(int orderId, double costOfProduct){
         panel = new JPanel();
-        panel.setBackground(new Color(241, 250, 238));
+        panel.setBackground(new Color(211,211,211));
+        panel.setBorder(BorderFactory.createLineBorder(Color.black));   //Adds a border around each product
 
         int orderID = orderId;
         label = new JLabel("Order ID:"+ orderID);
