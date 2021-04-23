@@ -1,5 +1,7 @@
 package app.gui;
 
+import app.database.Database;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -7,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RegisterWindow extends Window {
-    ChoiceHandler choiceHandler = new ChoiceHandler();
+    ButtonHandler buttonHandler = new ButtonHandler();
+    TextHandler textHandler = new TextHandler();
+
+    String username;
 
     //Creates the Main Page which will later change when buttons are clicked
     public RegisterWindow() {
@@ -40,6 +45,7 @@ public class RegisterWindow extends Window {
         textField.setMaximumSize(new Dimension(400, 50));
         textField.setBorder(new LineBorder(Color.BLACK, 2));
         panel.add(textField);
+
 
         window.add(panel);
 
@@ -138,7 +144,7 @@ public class RegisterWindow extends Window {
         button.setForeground(Color.BLACK);
         button.setFont(smallFont);
         button.setFocusPainted(false);
-        button.addActionListener(choiceHandler);
+        button.addActionListener(buttonHandler);
         button.setActionCommand("Register");
         panel.add(button);
 
@@ -146,19 +152,21 @@ public class RegisterWindow extends Window {
 
 
         window.setVisible(true);
+
     }
 
-    private class ChoiceHandler implements ActionListener {
+    private class ButtonHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();
             //Changes with your choice with a switch statement
             switch (choice){
                 case "Register":
                     window.dispose();
-                    new CatalogWindow();    //Sends them to catalog after registering
-                    //new LoginWindow();    //Or we could send them to the login screen
+                    //new CatalogWindow();    //Sends them to catalog after registering
+                    new LoginWindow();    //Or we could send them to the login screen
                 break;
             }
         }
     }
+
 }

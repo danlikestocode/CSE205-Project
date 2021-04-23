@@ -16,7 +16,7 @@ public class Database {
 	// This method connects the database as connection c and statement s which will
 	// be
 	// used throughout the database controller
-	public static void databaseconnect() {
+	private static void databaseconnect() {
 
 		try {
 			c = DriverManager.getConnection("jdbc:postgresql://" + Keys.address + "/usersdb", Keys.username,

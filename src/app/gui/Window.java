@@ -8,9 +8,6 @@ public abstract class Window {
 
     protected JPanel panel;
     protected JLabel label;
-    protected JTextField textField;
-    protected JPasswordField passwordField;
-    protected JComboBox comboBox;
     protected JButton button;
 
     protected Font largeFont = new Font("Apple Casual",Font.BOLD, 60);
