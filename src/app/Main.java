@@ -8,7 +8,8 @@ public class Main {
     public static void main(String[] args) {
         //initializes connection to the database
     	System.out.println(database.updateString("users", "fname", "UNCATCHABLE","uncatchable"));
-
+    	System.out.println(database.createProduct("Banana", 69, 6.50, "A not as good fruit"));
+    	
         new LoginWindow(); // GUI
     }
 

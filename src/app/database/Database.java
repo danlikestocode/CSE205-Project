@@ -196,5 +196,20 @@ public class Database {
 		//returns whether the update was successful
 		return successful;
 	}
+	
+	public boolean createProduct(String productName,int stock, double price, String description) {
+		boolean successful = false;
+		
+		try {
+			
+			s.execute("Insert into products (productname, stock, price, description) VALUES ('"+productName+"',"+stock+","+price+",'"+description+"');");
+			successful = true;
+			
+		} catch (SQLException e) {
+			successful = false;
+		}
+		
+		return successful;
+	}
 
 }
