@@ -139,8 +139,10 @@ public class CartWindow extends Window{
                     new LoginWindow();
                     break;
                 case "Checkout":
-                    window.dispose();
-                    new PendingOrdersWindow();
+                    //window.dispose();
+                    //new PendingOrdersWindow();
+                    //for now this won't do anything
+                    // to access pending orders, log in as a manager
             }
         }
     }

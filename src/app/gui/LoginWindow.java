@@ -124,8 +124,9 @@ public class LoginWindow extends Window {
                     if (!usernameTextField.getText().equals("") && !new String(passwordField.getPassword()).equals("")) {
                         //If both the username and password boxes are filled
                         // this line below is giving a postgres error, idk why but it still works
-                        Boolean success = Database.searchForString("users", "usernames", usernameTextField.getText());
-                        if (success) password = Database.returnCurrentString("passwords");
+                        if (Database.searchForString("users", "usernames", usernameTextField.getText())) {
+                            password = Database.returnCurrentString("passwords");
+                        }
                     } else {
                         errorLabel.setText("Error: Please enter a username and password");
                         errorLabel.setVisible(true);
@@ -134,8 +135,17 @@ public class LoginWindow extends Window {
 
                     if (password.equals(new String(passwordField.getPassword()))) {
                         //If the database password is equal to the user input
-                        window.dispose();
-                        new CatalogWindow();
+                        int designation = Database.returnCurrentInt("designation");
+                        if (designation != 1 && designation != 2) { // the user is neither a mananager nor employee
+                            //regular old customer, go to the catalog
+                            window.dispose();
+                            new CatalogWindow();
+                        } else { //employee / manager
+                            // send them to the orders
+                            window.dispose();
+                            new PendingOrdersWindow();
+                        }
+
                     } else {
                         errorLabel.setText("Error: Incorrect password");
                         errorLabel.setVisible(true);

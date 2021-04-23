@@ -6,7 +6,7 @@ import java.awt.*;
 public abstract class Window {
     protected JFrame window = new JFrame();
 
-    protected JPanel panel;
+    protected JPanel panel; // for nested panels, you will need to make more
     protected JLabel label; //if you plan to change the text of the label, make a new one
     protected JButton button;
     // text fields should be unique, so not initialized here
