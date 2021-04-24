@@ -137,10 +137,6 @@ public class EmployeeCatalogWindow extends Window{
             String choice = e.getActionCommand();
             //Changes with your choice with a switch statement
             switch (choice) {
-                case "Cart":
-                    window.dispose();
-                    new CartWindow();
-                    break;
                 case "Logout":
                     window.dispose();
                     new LoginWindow();

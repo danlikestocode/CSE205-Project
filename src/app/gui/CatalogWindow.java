@@ -35,19 +35,6 @@ public class CatalogWindow extends Window {
         panel.add(label);
 
 
-
-
-        // Cart
-        button = new JButton("Cart");
-        button.setSize(20, 20);
-        button.setBackground(new Color(168, 218, 220));
-        button.setForeground(Color.BLACK);
-        button.setFont(smallFont);
-        button.setFocusPainted(false);
-        button.addActionListener(choiceHandler);
-        button.setActionCommand("Cart");
-        panel.add(button);
-
         if(User.getDesignation() != 0){
             button = new JButton("Pending Orders");
             button.setSize(20, 20);
@@ -110,6 +97,7 @@ public class CatalogWindow extends Window {
         // PRODUCT PANELS
         window.add(showProductPanels(""));
 
+        window.getContentPane().setLayout(new FlowLayout());
         window.setVisible(true);
     }
 
@@ -123,11 +111,8 @@ public class CatalogWindow extends Window {
                     window.remove(productPanels);
                     window.add(showProductPanels(searchTextField.getText()));
                     window.setVisible(true);
+                    window.repaint();
                 break;
-                case "Cart":
-                    window.dispose();
-                    new CartWindow();
-                    break;
                 case "Logout":
                     window.dispose();
                     new LoginWindow();
@@ -159,7 +144,8 @@ public class CatalogWindow extends Window {
 
     private JPanel showProductPanels(String search) {
         // reinit the panel every time to start fresh
-        productPanels = new JPanel(new FlowLayout());
+        productPanels = new JPanel();
+        productPanels.setLayout(new BoxLayout(productPanels, BoxLayout.Y_AXIS));
         productPanels.setBackground(new Color(241, 250, 238));
         JPanel productPanel;
         ProductAddButtonHandler addButtonHandler = new ProductAddButtonHandler();
