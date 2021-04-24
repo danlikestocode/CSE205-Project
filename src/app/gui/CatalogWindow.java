@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 import app.database.Cart;
 import app.database.Database;
+import app.database.User;
 
 public class CatalogWindow extends Window {
     ChoiceHandler choiceHandler = new ChoiceHandler();
@@ -22,7 +23,7 @@ public class CatalogWindow extends Window {
     public CatalogWindow() {
         super();
 
-// HEADER
+        // HEADER
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
@@ -46,6 +47,23 @@ public class CatalogWindow extends Window {
         button.addActionListener(choiceHandler);
         button.setActionCommand("Cart");
         panel.add(button);
+
+        if(User.getDesignation() != 0){
+            button = new JButton("Pending Orders");
+            button.setSize(20, 20);
+            button.setBackground(new Color(168, 218, 220));
+            button.setForeground(Color.BLACK);
+            button.setFont(smallFont);
+            button.setFocusPainted(false);
+            button.addActionListener(choiceHandler);
+            button.setActionCommand("PendingOrders");
+            panel.add(button);
+
+            window.add(panel);
+        }
+        else{
+
+        }
 
         // Logout
         button = new JButton("Logout");
@@ -113,6 +131,11 @@ public class CatalogWindow extends Window {
                 case "Logout":
                     window.dispose();
                     new LoginWindow();
+                    break;
+                case "PendingOrders":
+
+                    window.dispose();
+                    new PendingOrdersWindow();
                     break;
             }
         }

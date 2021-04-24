@@ -1,6 +1,7 @@
 package app.gui;
 
 import app.database.Database;
+import app.database.User;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -151,26 +152,23 @@ public class RegisterWindow extends Window {
         window.add(panel);
 
         //Create if else statement for desingnation
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("Position:    ");
+        label.setFont(smallFont);
+        panel.add(label);
+
+        String position[] = {"Customer", "Employee", "Manager"};
+        positionComboBox = new JComboBox(position);
+        positionComboBox.setFont(smallFont);
+        positionComboBox.setPreferredSize(new Dimension(200,50));
+        positionComboBox.setMaximumSize(new Dimension(200, 50));
+        positionComboBox.setBorder(new LineBorder(Color.BLACK, 2));
+        panel.add(positionComboBox);
+
         if(designation == 2){
-            panel = new JPanel();
-            panel.setBackground(new Color(241, 250, 238));
-
-            label = new JLabel("Position:    ");
-            label.setFont(smallFont);
-            panel.add(label);
-
-            String position[] = {"Customer", "Employee", "Manager"};
-            positionComboBox = new JComboBox(position);
-            positionComboBox.setFont(smallFont);
-            positionComboBox.setPreferredSize(new Dimension(200,50));
-            positionComboBox.setMaximumSize(new Dimension(200, 50));
-            positionComboBox.setBorder(new LineBorder(Color.BLACK, 2));
-            panel.add(positionComboBox);
-
             window.add(panel);
-        }
-        else if (designation == 1){
-
         }
 
         //Diffrent Positions
@@ -209,7 +207,6 @@ public class RegisterWindow extends Window {
         panel.add(button);
 
         window.add(panel);
-
         // Register Button
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
@@ -250,7 +247,9 @@ public class RegisterWindow extends Window {
             switch (choice){
                 case "Back":
                     window.dispose();
-                    new LoginWindow();
+                    if (User.getDesignation() == 0) { new LoginWindow(); }
+                    else { new PendingOrdersWindow(); }
+
                 break;
                 case "Register":
 
@@ -272,15 +271,16 @@ public class RegisterWindow extends Window {
                     // Now let's check to see if their username is unique
                     if (!alreadyExists) { // the username is unique, so we will create a user
 
+
                         Database.createUser(
                             usernameTextField.getText(), new String(passwordField.getPassword()),
                             emailTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(),
-                            addressTextField.getText(), 0 //customer
+                            addressTextField.getText(), positionComboBox.getSelectedIndex() //customer
                         );
 
                         window.dispose();
-                        //new CatalogWindow();    //Sends them to catalog after registering
-                        new LoginWindow();    //Or we could send them to the login screen
+                        if (User.getDesignation() == 0) { new LoginWindow(); }
+                        else { new PendingOrdersWindow(); }
 
                     } else { // the username is not unique.
                         errorLabel.setText("Error: Username already exists.");

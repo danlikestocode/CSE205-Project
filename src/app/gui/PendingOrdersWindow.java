@@ -117,7 +117,7 @@ public class PendingOrdersWindow extends Window{
             switch (choice){
                 case "Catalog":
                     window.dispose();
-                    new CatalogWindow();
+                    new EmployeeCatalogWindow();
                     break;
                 case "Logout":
                     window.dispose();

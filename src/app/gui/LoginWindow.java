@@ -19,7 +19,12 @@ public class LoginWindow extends Window {
     JLabel errorLabel;
 
     public LoginWindow() {
+
+
         super();
+
+        User.setUsername("");
+        User.setDesignation(0);
 
 
         // TITLE
