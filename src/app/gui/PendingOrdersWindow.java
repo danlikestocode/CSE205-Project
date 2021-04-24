@@ -1,15 +1,17 @@
 package app.gui;
 
+import app.database.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PendingOrders extends Window{
+public class PendingOrdersWindow extends Window{
 
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
-    public PendingOrders(){
+    public PendingOrdersWindow(){
         super();
 
         // Panel that holds the title and the buttons
@@ -54,6 +56,19 @@ public class PendingOrders extends Window{
 
         window.add(panel);
 
+        button = new JButton("Register");
+        // button.setHorizontalAlignment(0);
+        button.setSize(20, 20);
+        button.setBackground(new Color(168, 218, 220));
+        button.setForeground(Color.BLACK);
+        button.setFont(smallFont);
+        button.setFocusPainted(false);
+        button.addActionListener(choiceHandler);
+        button.setActionCommand("Register");
+        panel.add(button);
+
+        window.add(panel);
+
         product(234543532, 3.5);
         product(1234324,4.8);
 
@@ -94,7 +109,7 @@ public class PendingOrders extends Window{
 
         window.add(panel);
     }
-
+    //Add a button to pending order
     private class ChoiceHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -108,6 +123,9 @@ public class PendingOrders extends Window{
                     window.dispose();
                     new LoginWindow();
                     break;
+                case "Register":
+                    window.dispose();
+                    new RegisterWindow(User.getDesignation());
             }
         }
     }

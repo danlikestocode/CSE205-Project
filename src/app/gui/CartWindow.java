@@ -1,7 +1,10 @@
 package app.gui;
 
+import app.database.Cart;
+import app.database.Database;
+import app.database.User;
+
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +12,8 @@ import java.awt.event.ActionListener;
 public class CartWindow extends Window{
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
-    public CartWindow(){
+    public CartWindow() {
+
         super();
 
         // Panel that holds the title and the buttons
@@ -140,8 +144,10 @@ public class CartWindow extends Window{
                     new LoginWindow();
                     break;
                 case "Checkout":
-                    window.dispose();
-                    new PendingOrders();
+                    //window.dispose();
+                    //new PendingOrdersWindow();
+                    //for now this won't do anything
+                    // to access pending orders, log in as a manager
             }
         }
     }
