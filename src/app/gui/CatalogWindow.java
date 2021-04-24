@@ -35,19 +35,6 @@ public class CatalogWindow extends Window {
         panel.add(label);
 
 
-
-
-        // Cart
-        button = new JButton("Cart");
-        button.setSize(20, 20);
-        button.setBackground(new Color(168, 218, 220));
-        button.setForeground(Color.BLACK);
-        button.setFont(smallFont);
-        button.setFocusPainted(false);
-        button.addActionListener(choiceHandler);
-        button.setActionCommand("Cart");
-        panel.add(button);
-
         if(User.getDesignation() != 0){
             button = new JButton("Pending Orders");
             button.setSize(20, 20);
@@ -124,10 +111,6 @@ public class CatalogWindow extends Window {
                     window.add(showProductPanels(searchTextField.getText()));
                     window.setVisible(true);
                 break;
-                case "Cart":
-                    window.dispose();
-                    new CartWindow();
-                    break;
                 case "Logout":
                     window.dispose();
                     new LoginWindow();
