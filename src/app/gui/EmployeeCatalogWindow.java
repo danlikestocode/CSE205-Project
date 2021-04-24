@@ -151,6 +151,7 @@ public class EmployeeCatalogWindow extends Window{
         }
     }
 
+    //for storing all text fields so their values can be obtained later
     private JTextField[] names = new JTextField[] {};
     private JTextField[] prices = new JTextField[] {};
     private JTextField[] stocks = new JTextField[] {};
