@@ -17,10 +17,7 @@ public class Cart {
     }
 
     public static void subtractProduct (int id) {
-
+        if (products[id] > 0) products[id]--;
     }
-
-    public static int[] getIDs() { return productIDs; }
-    public static int[] getQuantities() { return quantities; }
 
 }
