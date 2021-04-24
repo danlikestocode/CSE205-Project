@@ -150,6 +150,28 @@ public class RegisterWindow extends Window {
 
         window.add(panel);
 
+        //Create if else statement for desingnation
+        if(designation == 2){
+            panel = new JPanel();
+            panel.setBackground(new Color(241, 250, 238));
+
+            label = new JLabel("Position:    ");
+            label.setFont(smallFont);
+            panel.add(label);
+
+            String position[] = {"Customer", "Employee", "Manager"};
+            positionComboBox = new JComboBox(position);
+            positionComboBox.setFont(smallFont);
+            positionComboBox.setPreferredSize(new Dimension(200,50));
+            positionComboBox.setMaximumSize(new Dimension(200, 50));
+            positionComboBox.setBorder(new LineBorder(Color.BLACK, 2));
+            panel.add(positionComboBox);
+
+            window.add(panel);
+        }
+        else if (designation == 1){
+
+        }
 
         //Diffrent Positions
         /* //This option should only exist when an employee or manager is creating an account.
