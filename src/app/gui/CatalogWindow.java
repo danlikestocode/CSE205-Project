@@ -248,8 +248,13 @@ public class CatalogWindow extends Window {
         label.setFont(largeFont);
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100));
         userCart.add(label);
+
+        JTextField text = new JTextField();
+        text.setText("random test");
+        userCart.add(text);
+
         userCarts.add(userCart);
-        
+
        return userCarts;
 
     }
