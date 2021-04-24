@@ -189,7 +189,7 @@ public class Database {
 		return successful;
 	}
 
-	public boolean updateString(String datatable, String columnName, String identifyingID, String newValue, String idColumnName) {
+	public static boolean updateString(String datatable, String columnName, String identifyingID, String newValue, String idColumnName) {
 		
 		boolean successful = false;
 
@@ -206,8 +206,8 @@ public class Database {
 		return successful;
 	}
 	
-<<<<<<< HEAD
-	public boolean updateInt(String datatable, String columnName, String identifyingID, int newValue, String idColumnName) {
+//<<<<<<< HEAD
+	public static boolean updateInt(String datatable, String columnName, String identifyingID, int newValue, String idColumnName) {
 		
 		boolean successful = false;
 
@@ -225,7 +225,7 @@ public class Database {
 	}
 
 
-	public boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
+	public static boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
 
 	
 		boolean successful = false;

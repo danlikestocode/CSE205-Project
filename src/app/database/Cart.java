@@ -15,7 +15,6 @@ public class Cart {
 
     public static void addProduct (int id) {
         //if the current array is too small
-        System.out.println(id);
         if (id >= products.length) {
             int[] temp = products;
             products = new int[id + 1];
@@ -24,11 +23,20 @@ public class Cart {
             }
         }
         products[id]++;
-        //Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
+        printCart();
+        Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
     }
 
     public static void subtractProduct (int id) {
         if (products[id] > 0) products[id]--;
+        printCart();
+    }
+
+    public static void printCart() {
+        System.out.println();
+        for (int i = 0; i < products.length; i++) {
+            System.out.print(products[i] + " ");
+        }
     }
 
 }

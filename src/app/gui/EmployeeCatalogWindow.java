@@ -154,6 +154,14 @@ public class EmployeeCatalogWindow extends Window{
         }
     }
 
+    private class UpdateHandler implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            int id = Integer.parseInt(e.getActionCommand());
+            //Database.searchForInt("products", "productid", id);
+            //Database.updateString("products", "productname", id, )
+        }
+    }
+
     private JPanel showProductPanels(String search) {
         // reinit the panel every time to start fresh
         productPanels = new JPanel();
@@ -237,7 +245,7 @@ public class EmployeeCatalogWindow extends Window{
                 button.setFont(smallFont);
                 button.setFocusPainted(false);
                 button.addActionListener(buttonHandler);
-                button.setActionCommand("Update");
+                button.setActionCommand(Integer.toString(rs.getInt("productid")));
                 panel.add(button);
 
                 productPanel.add(panel);
