@@ -24,16 +24,17 @@ public class Cart {
         }
         products[id]++;
         printCart();
-        Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
+        boolean success = Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
+        System.out.println(success); // for debugging
     }
 
     public static void subtractProduct (int id) {
         if (products[id] > 0) products[id]--;
-        printCart();
+        printCart(); // for debugging
     }
 
     public static void printCart() {
-        System.out.println();
+        System.out.println(); // for debugging
         for (int i = 0; i < products.length; i++) {
             System.out.print(products[i] + " ");
         }
