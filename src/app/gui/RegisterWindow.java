@@ -193,36 +193,19 @@ public class RegisterWindow extends Window {
 
          */
         // Back Button
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
 
-        if(User.getDesignation() != 0){
-            panel = new JPanel();
-            panel.setBackground(new Color(241, 250, 238));
+        button = new JButton("Back");
+        button.setSize(20, 20);
+        button.setBackground(new Color(168, 218, 220));
+        button.setForeground(Color.BLACK);
+        button.setFont(smallFont);
+        button.setFocusPainted(false);
+        button.addActionListener(buttonHandler);
+        button.setActionCommand("Back");
+        panel.add(button);
 
-            button = new JButton("Back");
-            button.setSize(20, 20);
-            button.setBackground(new Color(168, 218, 220));
-            button.setForeground(Color.BLACK);
-            button.setFont(smallFont);
-            button.setFocusPainted(false);
-            button.addActionListener(buttonHandler);
-            button.setActionCommand("PendingOrders");
-
-            panel.add(button);
-        }
-        else if (User.getDesignation() == 0){
-            panel = new JPanel();
-            panel.setBackground(new Color(241, 250, 238));
-
-            button = new JButton("Back");
-            button.setSize(20, 20);
-            button.setBackground(new Color(168, 218, 220));
-            button.setForeground(Color.BLACK);
-            button.setFont(smallFont);
-            button.setFocusPainted(false);
-            button.addActionListener(buttonHandler);
-            button.setActionCommand("Back");
-            panel.add(button);
-        }
         window.add(panel);
         // Register Button
         panel = new JPanel();
@@ -264,7 +247,9 @@ public class RegisterWindow extends Window {
             switch (choice){
                 case "Back":
                     window.dispose();
-                    new LoginWindow();
+                    if (User.getDesignation() == 0) { new LoginWindow(); }
+                    else { new PendingOrdersWindow(); }
+
                 break;
                 case "Register":
 
@@ -294,8 +279,8 @@ public class RegisterWindow extends Window {
                         );
 
                         window.dispose();
-                        //new CatalogWindow();    //Sends them to catalog after registering
-                        new LoginWindow();    //Or we could send them to the login screen
+                        if (User.getDesignation() == 0) { new LoginWindow(); }
+                        else { new PendingOrdersWindow(); }
 
                     } else { // the username is not unique.
                         errorLabel.setText("Error: Username already exists.");
@@ -304,9 +289,6 @@ public class RegisterWindow extends Window {
                     }
 
                 break;
-                case "PendingOrders":
-                    window.dispose();
-                    new PendingOrdersWindow();
             }
         }
     }
