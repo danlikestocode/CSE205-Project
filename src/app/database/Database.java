@@ -241,6 +241,8 @@ public class Database {
 			
 			Array updatedArray = c.createArrayOf("int", strArray);
 			
+			System.out.println("UPDATE " + datatable+ " SET " + columnName + " = "+strArray+" WHERE '" + idColumnName + " = '"+identifyingID+"'");
+			
 			PreparedStatement arrayStatement = c.prepareStatement("UPDATE " + datatable+ " SET " + columnName + " = ? WHERE '" + idColumnName + " = '"+identifyingID+"'");
 			//sends the command to update the specified column in the specified table
 			//s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
