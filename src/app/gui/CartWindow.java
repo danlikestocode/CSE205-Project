@@ -1,5 +1,9 @@
 package app.gui;
 
+import app.database.Cart;
+import app.database.Database;
+import app.database.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +12,8 @@ import java.awt.event.ActionListener;
 public class CartWindow extends Window{
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
-    public CartWindow(){
+    public CartWindow() {
+
         super();
 
         // Panel that holds the title and the buttons

@@ -172,7 +172,21 @@ public class RegisterWindow extends Window {
         window.add(panel);
 
          */
+        // Back Button
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
 
+        button = new JButton("Back");
+        button.setSize(20, 20);
+        button.setBackground(new Color(168, 218, 220));
+        button.setForeground(Color.BLACK);
+        button.setFont(smallFont);
+        button.setFocusPainted(false);
+        button.addActionListener(buttonHandler);
+        button.setActionCommand("Back");
+        panel.add(button);
+
+        window.add(panel);
 
         // Register Button
         panel = new JPanel();
@@ -212,6 +226,10 @@ public class RegisterWindow extends Window {
             String choice = e.getActionCommand();
             //Changes with your choice with a switch statement
             switch (choice){
+                case "Back":
+                    window.dispose();
+                    new LoginWindow();
+                break;
                 case "Register":
 
                     Boolean alreadyExists;

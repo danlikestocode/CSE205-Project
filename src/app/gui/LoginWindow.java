@@ -1,6 +1,8 @@
 package app.gui;
 
+import app.database.Cart;
 import app.database.Database;
+import app.database.User;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -120,11 +122,12 @@ public class LoginWindow extends Window {
                 case "Login": /*when the user logs in*/
 
                     String password = "";
+                    String username = usernameTextField.getText();
 
                     if (!usernameTextField.getText().equals("") && !new String(passwordField.getPassword()).equals("")) {
                         //If both the username and password boxes are filled
                         // this line below is giving a postgres error, idk why but it still works
-                        if (Database.searchForString("users", "usernames", usernameTextField.getText())) {
+                        if (Database.searchForString("users", "usernames", username)) {
                             password = Database.returnCurrentString("passwords");
                         }
                     } else {
@@ -140,10 +143,19 @@ public class LoginWindow extends Window {
                             //regular old customer, go to the catalog
                             window.dispose();
                             new CatalogWindow();
+
+                            //static user class updated username and cart
+                            User.setUsername(username);
+                            Database.searchForString("users", "usernames", User.getUsername());
+                            Cart.loadCart(Database.return2DArray("cart"));
                         } else { //employee / manager
+
+
                             // send them to the orders
                             window.dispose();
                             new PendingOrdersWindow();
+
+
                         }
 
                     } else {
