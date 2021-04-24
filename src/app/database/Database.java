@@ -162,7 +162,7 @@ public class Database {
 		int[] result = new int[] {};
 		try {
 
-			if (rs.getArray(columnName) != null) {
+			if (rs.getArray(columnName) != null) { // make sure there's something there
 				fromDatabase = rs.getArray(columnName).toString(); //array to string
 				fromDatabase = fromDatabase.substring(1, fromDatabase.length() - 1); //remove the brackets
 				String[] stringArr = fromDatabase.split(",");
@@ -251,8 +251,9 @@ public class Database {
 			strArray=strArray+","+newValue[i];
 		}
 		strArray = strArray+"}";
-		
-		System.out.println("UPDATE " + datatable+ " SET " + columnName + " = '"+strArray+"' WHERE " + idColumnName + " = '"+identifyingID+"';");
+
+		//debug print
+		//System.out.println("UPDATE " + datatable+ " SET " + columnName + " = '"+strArray+"' WHERE " + idColumnName + " = '"+identifyingID+"';");
 		try {
 			
 			
