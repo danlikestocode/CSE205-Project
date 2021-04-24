@@ -98,7 +98,7 @@ public class CatalogWindow extends Window {
 
         // PRODUCT PANELS
         window.add(showProductPanels(""));
-        window.add(showUserCart());
+//        window.add(showUserCart());
 
         window.getContentPane().setLayout(new FlowLayout());
         window.setVisible(true);
@@ -233,30 +233,31 @@ public class CatalogWindow extends Window {
 
     }
 
-    private JPanel showUserCart() {
-
-        userCarts = new JPanel();
-        userCarts.setLayout(new BoxLayout(userCarts, BoxLayout.Y_AXIS));
-        userCarts.setBackground(new Color(241, 250, 238));
-        JPanel userCart;
-
-        userCart = new JPanel();
-        userCart.setBackground(new Color(200, 200, 200));
-
-        label = new JLabel("Cart");
-        label.setForeground(Color.BLACK);
-        label.setFont(largeFont);
-        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100));
-        userCart.add(label);
-
-        JTextField text = new JTextField();
-        text.setText("random test");
-        userCart.add(text);
-
-        userCarts.add(userCart);
-
-       return userCarts;
-
-    }
+    // DEPRECATED
+//    private JPanel showUserCart() {
+//
+//        userCarts = new JPanel();
+//        userCarts.setLayout(new BoxLayout(userCarts, BoxLayout.Y_AXIS));
+//        userCarts.setBackground(new Color(241, 250, 238));
+//        JPanel userCart;
+//
+//        userCart = new JPanel();
+//        userCart.setBackground(new Color(200, 200, 200));
+//
+//        label = new JLabel("Cart");
+//        label.setForeground(Color.BLACK);
+//        label.setFont(largeFont);
+//        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100));
+//        userCart.add(label);
+//
+//        JTextField text = new JTextField();
+//        text.setText("random test");
+//        userCart.add(text);
+//
+//        userCarts.add(userCart);
+//
+//       return userCarts;
+//
+//    }
 
 }
