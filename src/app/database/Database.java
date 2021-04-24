@@ -208,7 +208,7 @@ public class Database {
 		return successful;
 	}
 	
-	public boolean updateArray(String datatable, String columnName, String identifyingID, Array newValue, String idColumnName) {
+	public static boolean updateArray(String datatable, String columnName, String identifyingID, Array newValue, String idColumnName) {
 		boolean successful = false;
 		//selects the correct ID column for the selected table
 	
