@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.Flow;
 
 import app.database.Cart;
 import app.database.Database;
@@ -18,6 +19,7 @@ public class CatalogWindow extends Window {
 
     JTextField searchTextField;
     JPanel productPanels;
+    JPanel userCarts;
 
 
     public CatalogWindow() {
@@ -96,6 +98,7 @@ public class CatalogWindow extends Window {
 
         // PRODUCT PANELS
         window.add(showProductPanels(""));
+        window.add(showUserCart());
 
         window.getContentPane().setLayout(new FlowLayout());
         window.setVisible(true);
@@ -200,7 +203,29 @@ public class CatalogWindow extends Window {
             productPanels.add(label);
         }
 
+
         return productPanels;
+
+    }
+
+    private JPanel showUserCart() {
+
+        userCarts = new JPanel();
+        userCarts.setLayout(new BoxLayout(userCarts, BoxLayout.Y_AXIS));
+        userCarts.setBackground(new Color(241, 250, 238));
+        JPanel userCart;
+
+        userCart = new JPanel();
+        userCart.setBackground(new Color(200, 200, 200));
+
+        label = new JLabel("Cart");
+        label.setForeground(Color.BLACK);
+        label.setFont(largeFont);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100));
+        userCart.add(label);
+        userCarts.add(userCart);
+        
+       return userCarts;
 
     }
 
