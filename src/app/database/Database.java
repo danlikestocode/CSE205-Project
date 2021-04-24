@@ -1,6 +1,7 @@
 package app.database;
 
 import java.sql.*;
+import java.util.Arrays;
 
 //This class is our database controller it contains the methods that read, write and search the database.
 public class Database {
@@ -208,14 +209,27 @@ public class Database {
 		return successful;
 	}
 	
-	public boolean updateArray(String datatable, String columnName, String identifyingID, Array newValue, String idColumnName) {
+	public boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
 		boolean successful = false;
 		//selects the correct ID column for the selected table
 	
+		String[] strArray = new String[newValue.length];
+		
+		for (int i =0; i < newValue.length;i++) {
+			strArray[i]=String.valueOf(newValue[i]);
+		}
+		
 		try {
+			
+			Array updatedArray = c.createArrayOf("int", strArray);
+			
+			PreparedStatement arrayStatement = c.prepareStatement("UPDATE " + datatable+ " SET " + columnName + " = ? WHERE '" + idColumnName + " = '"+identifyingID+"'");
 			//sends the command to update the specified column in the specified table
-			s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
+			//s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
+			arrayStatement.setArray(1, updatedArray);
 			successful = true;
+			
+		
 
 		} catch (SQLException e) {
 			successful = false;
