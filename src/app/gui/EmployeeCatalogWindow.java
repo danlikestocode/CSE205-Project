@@ -227,6 +227,22 @@ public class EmployeeCatalogWindow extends Window{
                 productPanel.add(panel);
 
 
+                panel = new JPanel();
+                panel.setBackground(new Color(241, 250, 238));
+
+                button = new JButton("Update");
+                button.setSize(20, 20);
+                button.setBackground(new Color(168, 218, 220));
+                button.setForeground(Color.BLACK);
+                button.setFont(smallFont);
+                button.setFocusPainted(false);
+                button.addActionListener(buttonHandler);
+                button.setActionCommand("Update");
+                panel.add(button);
+
+                productPanel.add(panel);
+
+
                 name.setText(rs.getString("productname"));
                 price.setText(Double.toString(rs.getDouble("price")));
                 stock.setText(Integer.toString(rs.getInt("stock")));
