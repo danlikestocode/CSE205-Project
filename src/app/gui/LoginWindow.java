@@ -139,14 +139,16 @@ public class LoginWindow extends Window {
                     if (password.equals(new String(passwordField.getPassword()))) {
                         //If the database password is equal to the user input
                         int designation = Database.returnCurrentInt("designation");
+                        //static user class updated username and cart
+                        User.setUsername(username);
+                        User.setDesignation(designation);
+
                         if (designation != 1 && designation != 2) { // the user is neither a mananager nor employee
                             //regular old customer, go to the catalog
                             window.dispose();
                             new CatalogWindow();
 
-                            //static user class updated username and cart
-                            User.setUsername(username);
-                            User.setDesignation(designation);
+
                             Database.searchForString("users", "usernames", User.getUsername());
                             Cart.loadCart(Database.return2DArray("cart"));
                         } else { //employee / manager

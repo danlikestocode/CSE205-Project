@@ -13,7 +13,7 @@ public class Cart {
     }
 
     public static void addProduct (int id) {
-
+        products[id]++;
     }
 
     public static void subtractProduct (int id) {
