@@ -97,6 +97,7 @@ public class CatalogWindow extends Window {
         // PRODUCT PANELS
         window.add(showProductPanels(""));
 
+        window.getContentPane().setLayout(new FlowLayout());
         window.setVisible(true);
     }
 
@@ -110,6 +111,7 @@ public class CatalogWindow extends Window {
                     window.remove(productPanels);
                     window.add(showProductPanels(searchTextField.getText()));
                     window.setVisible(true);
+                    window.repaint();
                 break;
                 case "Logout":
                     window.dispose();
@@ -142,7 +144,8 @@ public class CatalogWindow extends Window {
 
     private JPanel showProductPanels(String search) {
         // reinit the panel every time to start fresh
-        productPanels = new JPanel(new FlowLayout());
+        productPanels = new JPanel();
+        productPanels.setLayout(new BoxLayout(productPanels, BoxLayout.Y_AXIS));
         productPanels.setBackground(new Color(241, 250, 238));
         JPanel productPanel;
         ProductAddButtonHandler addButtonHandler = new ProductAddButtonHandler();

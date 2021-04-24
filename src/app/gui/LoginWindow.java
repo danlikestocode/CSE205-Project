@@ -25,6 +25,7 @@ public class LoginWindow extends Window {
 
         User.setUsername("");
         User.setDesignation(0);
+        Cart.loadCart(new int[] {});
 
 
         // TITLE
