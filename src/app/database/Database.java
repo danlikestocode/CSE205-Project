@@ -239,7 +239,7 @@ public class Database {
 		}
 		strArray = strArray+"}";
 		
-		System.out.println("UPDATE " + datatable+ " SET " + columnName + " = "+strArray+" WHERE '" + idColumnName + " = '"+identifyingID+"'");
+		System.out.println("UPDATE " + datatable+ " SET " + columnName + " = "+strArray+" WHERE '" + idColumnName + " = '"+identifyingID+"';");
 		try {
 			
 			
