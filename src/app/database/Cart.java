@@ -1,13 +1,16 @@
 package app.database;
 
 public class Cart {
+
+    //the index of the array represents the product id
     private static int[] products;
 
-    public static void loadCart(int[][] cart2DArray) {
+    public static void loadCart(int[] cart) {
         //initializes the cart from the db
-        if (cart2DArray != null) {
-            for (int i = 0; i < cart2DArray[0].length; i++) {
-                products[i] = cart2DArray[1][i];
+        if (cart != null) {
+            products = new int[cart.length];
+            for (int i = 0; i < cart.length; i++) {
+                products[i] = cart[i];
             }
         }
     }
