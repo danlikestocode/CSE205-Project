@@ -35,35 +35,18 @@ public class EmployeeCatalogWindow extends Window{
         panel.add(label);
 
 
-
-
-        // Cart
-        button = new JButton("Cart");
+        // Pending Orders
+        button = new JButton("Pending Orders");
         button.setSize(20, 20);
         button.setBackground(new Color(168, 218, 220));
         button.setForeground(Color.BLACK);
         button.setFont(smallFont);
         button.setFocusPainted(false);
         button.addActionListener(buttonHandler);
-        button.setActionCommand("Cart");
+        button.setActionCommand("PendingOrders");
         panel.add(button);
 
-        if(User.getDesignation() != 0){
-            button = new JButton("Pending Orders");
-            button.setSize(20, 20);
-            button.setBackground(new Color(168, 218, 220));
-            button.setForeground(Color.BLACK);
-            button.setFont(smallFont);
-            button.setFocusPainted(false);
-            button.addActionListener(buttonHandler);
-            button.setActionCommand("PendingOrders");
-            panel.add(button);
-
-            window.add(panel);
-        }
-        else{
-
-        }
+        window.add(panel);
 
         // Logout
         button = new JButton("Logout");
@@ -79,7 +62,7 @@ public class EmployeeCatalogWindow extends Window{
         window.add(panel);
 
 
-        panel = new JPanel();
+        /* panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
         label = new JLabel("Product Name:");
@@ -139,9 +122,11 @@ public class EmployeeCatalogWindow extends Window{
         stock.setActionCommand("Stock");
         panel.add(stock);
 
-        window.add(panel);
+        window.add(panel); */
 
+        window.add(showProductPanels(""));
 
+        window.setVisible(true);
 
     }
 
@@ -181,36 +166,67 @@ public class EmployeeCatalogWindow extends Window{
                 productPanel = new JPanel();
                 productPanel.setBackground(new Color(200, 200, 200));
 
-                label = new JLabel(rs.getString("productName"));
+
+                panel = new JPanel();
+                panel.setBackground(new Color(241, 250, 238));
+
+                label = new JLabel("Name:");
+                label.setForeground(Color.BLACK);
                 label.setFont(smallFont);
-                productPanel.add(label);
+                label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
+                panel.add(label);
 
-                button = new JButton("+1");
-                button.setSize(20, 20);
-                button.setBackground(new Color(30, 30, 30));
-                button.setForeground(Color.WHITE);
-                button.setFont(smallFont);
-                button.setFocusPainted(false);
+                name = new JTextField();
+                name.setFont(smallFont);
+                name.setPreferredSize(new Dimension(400, 50));
+                name.setMaximumSize(new Dimension(400, 50));
+                name.setBorder(new LineBorder(Color.BLACK, 2));
+                panel.add(name);
 
-                button.setActionCommand(Integer.toString(rs.getInt("productid")));
-                productPanel.add(button);
+                productPanel.add(panel);
 
 
-                name.setText(rs.getString("productName"));
+                panel = new JPanel();
+                panel.setBackground(new Color(241, 250, 238));
 
-                price.setText(rs.getString("productPrice"));
+                label = new JLabel("Price:");
+                label.setForeground(Color.BLACK);
+                label.setFont(smallFont);
+                label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
+                panel.add(label);
 
-                stock.setText(rs.getString("productStock"));
+                price = new JTextField();
+                price.setFont(smallFont);
+                price.setPreferredSize(new Dimension(400, 50));
+                price.setMaximumSize(new Dimension(400, 50));
+                price.setBorder(new LineBorder(Color.BLACK, 2));
+                panel.add(price);
 
-                button = new JButton("-1");
-                button.setSize(20, 20);
-                button.setBackground(new Color(30, 30, 30));
-                button.setForeground(Color.WHITE);
-                button.setFont(smallFont);
-                button.setFocusPainted(false);
+                productPanel.add(panel);
 
-                button.setActionCommand(Integer.toString(rs.getInt("productid")));
-                productPanel.add(button);
+
+                panel = new JPanel();
+                panel.setBackground(new Color(241, 250, 238));
+
+                label = new JLabel("Stock:");
+                label.setForeground(Color.BLACK);
+                label.setFont(smallFont);
+                label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
+                panel.add(label);
+
+                stock = new JTextField();
+                stock.setFont(smallFont);
+                stock.setPreferredSize(new Dimension(400, 50));
+                stock.setMaximumSize(new Dimension(400, 50));
+                stock.setBorder(new LineBorder(Color.BLACK, 2));
+                panel.add(stock);
+
+                productPanel.add(panel);
+
+
+                name.setText(rs.getString("productname"));
+                price.setText(Double.toString(rs.getDouble("price")));
+                stock.setText(Integer.toString(rs.getInt("stock")));
 
                 productPanels.add(productPanel);
 

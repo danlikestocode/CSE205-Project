@@ -24,8 +24,7 @@ public class Cart {
             }
         }
         products[id]++;
-        Array products2
-        Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
+        //Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
     }
 
     public static void subtractProduct (int id) {
