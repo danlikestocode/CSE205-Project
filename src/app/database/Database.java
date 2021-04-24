@@ -231,17 +231,20 @@ public class Database {
 		boolean successful = false;
 		//selects the correct ID column for the selected table
 	
-		String strArray = "{";
+		String strArray = "{"+newValue[0];
 		
-		for (int i =0; i < newValue.length;i++) {
-			strArray=strArray+String.valueOf(newValue[i])+",";
+		
+		for (int i =1; i < newValue.length;i++) {
+			strArray=strArray+","+newValue[i];
 		}
 		strArray = strArray+"}";
+		
+		System.out.println("UPDATE " + datatable+ " SET " + columnName + " = "+strArray+" WHERE '" + idColumnName + " = '"+identifyingID+"'");
 		try {
 			
 			
 			s.execute("UPDATE " + datatable+ " SET " + columnName + " = "+strArray+" WHERE '" + idColumnName + " = '"+identifyingID+"'");
-			System.out.println("UPDATE " + datatable+ " SET " + columnName + " = "+strArray+" WHERE '" + idColumnName + " = '"+identifyingID+"'");
+			
 			
 			//PreparedStatement arrayStatement = c.prepareStatement("UPDATE " + datatable+ " SET " + columnName + " = ? WHERE '" + idColumnName + " = '"+identifyingID+"'");
 			//sends the command to update the specified column in the specified table
