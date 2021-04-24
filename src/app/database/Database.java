@@ -206,6 +206,7 @@ public class Database {
 		return successful;
 	}
 	
+<<<<<<< HEAD
 	public boolean updateInt(String datatable, String columnName, String identifyingID, int newValue, String idColumnName) {
 		
 		boolean successful = false;
@@ -222,6 +223,7 @@ public class Database {
 		//returns whether the update was successful
 		return successful;
 	}
+
 
 	public boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
 

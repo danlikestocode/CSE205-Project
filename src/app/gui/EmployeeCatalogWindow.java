@@ -126,6 +126,8 @@ public class EmployeeCatalogWindow extends Window{
 
         window.add(showProductPanels(""));
 
+        window.getContentPane().setLayout(new FlowLayout());
+
         window.setVisible(true);
 
     }
@@ -154,7 +156,8 @@ public class EmployeeCatalogWindow extends Window{
 
     private JPanel showProductPanels(String search) {
         // reinit the panel every time to start fresh
-        productPanels = new JPanel(new FlowLayout());
+        productPanels = new JPanel();
+        productPanels.setLayout(new BoxLayout(productPanels, BoxLayout.Y_AXIS));
         productPanels.setBackground(new Color(241, 250, 238));
         JPanel productPanel;
         ResultSet rs = Database.productResultSet(search);
@@ -178,7 +181,7 @@ public class EmployeeCatalogWindow extends Window{
 
                 name = new JTextField();
                 name.setFont(smallFont);
-                name.setPreferredSize(new Dimension(400, 50));
+                name.setPreferredSize(new Dimension(150, 50));
                 name.setMaximumSize(new Dimension(400, 50));
                 name.setBorder(new LineBorder(Color.BLACK, 2));
                 panel.add(name);
@@ -197,7 +200,7 @@ public class EmployeeCatalogWindow extends Window{
 
                 price = new JTextField();
                 price.setFont(smallFont);
-                price.setPreferredSize(new Dimension(400, 50));
+                price.setPreferredSize(new Dimension(100, 50));
                 price.setMaximumSize(new Dimension(400, 50));
                 price.setBorder(new LineBorder(Color.BLACK, 2));
                 panel.add(price);
@@ -216,10 +219,26 @@ public class EmployeeCatalogWindow extends Window{
 
                 stock = new JTextField();
                 stock.setFont(smallFont);
-                stock.setPreferredSize(new Dimension(400, 50));
+                stock.setPreferredSize(new Dimension(100, 50));
                 stock.setMaximumSize(new Dimension(400, 50));
                 stock.setBorder(new LineBorder(Color.BLACK, 2));
                 panel.add(stock);
+
+                productPanel.add(panel);
+
+
+                panel = new JPanel();
+                panel.setBackground(new Color(241, 250, 238));
+
+                button = new JButton("Update");
+                button.setSize(20, 20);
+                button.setBackground(new Color(168, 218, 220));
+                button.setForeground(Color.BLACK);
+                button.setFont(smallFont);
+                button.setFocusPainted(false);
+                button.addActionListener(buttonHandler);
+                button.setActionCommand("Update");
+                panel.add(button);
 
                 productPanel.add(panel);
 
