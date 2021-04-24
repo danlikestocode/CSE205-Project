@@ -189,17 +189,14 @@ public class Database {
 		return successful;
 	}
 
-	public boolean updateString(String datatable, String columnName, String identifyingID, String newValue) {
-		String identifyingIDColumnName = "";
+	public boolean updateString(String datatable, String columnName, String identifyingID, String newValue, String idColumnName) {
+		
 		boolean successful = false;
-		//selects the correct ID column for the selected table
-		if (datatable.equals("users")) {
-			identifyingIDColumnName = "usernames";
-		}
+
 
 		try {
 			//sends the command to update the specified column in the specified table
-			s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + identifyingIDColumnName + " = \'" + identifyingID + "\';");
+			s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
 			successful = true;
 
 		} catch (SQLException e) {
@@ -209,9 +206,25 @@ public class Database {
 		return successful;
 	}
 	
-<<<<<<< HEAD
+	public boolean updateInt(String datatable, String columnName, String identifyingID, int newValue, String idColumnName) {
+		
+		boolean successful = false;
+
+
+		try {
+			//sends the command to update the specified column in the specified table
+			s.execute("Update " + datatable + " set " + columnName + " = " + newValue + " where " + idColumnName + " = \'" + identifyingID + "\';");
+			successful = true;
+
+		} catch (SQLException e) {
+			successful = false;
+		}
+		//returns whether the update was successful
+		return successful;
+	}
+
 	public boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
-=======
+
 	
 		boolean successful = false;
 		//selects the correct ID column for the selected table
@@ -230,6 +243,7 @@ public class Database {
 			//sends the command to update the specified column in the specified table
 			//s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
 			arrayStatement.setArray(1, updatedArray);
+			arrayStatement.executeUpdate();
 			successful = true;
 			
 		
