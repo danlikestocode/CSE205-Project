@@ -133,6 +133,7 @@ public class CatalogWindow extends Window {
                     new LoginWindow();
                     break;
                 case "PendingOrders":
+
                     window.dispose();
                     new PendingOrdersWindow();
                     break;

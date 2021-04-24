@@ -209,6 +209,7 @@ public class RegisterWindow extends Window {
             button.setFocusPainted(false);
             button.addActionListener(buttonHandler);
             button.setActionCommand("PendingOrders");
+
             panel.add(button);
         }
         else if (User.getDesignation() == 0){
