@@ -23,7 +23,9 @@ public class Cart {
             }
         }
         products[id]++;
-        printCart();
+
+        printCart(); // for deubgging
+        // update the db with the cart   vvv
         boolean success = Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
         System.out.println(success); // for debugging
     }
