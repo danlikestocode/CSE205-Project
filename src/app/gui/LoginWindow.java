@@ -19,6 +19,9 @@ public class LoginWindow extends Window {
     JLabel errorLabel;
 
     public LoginWindow() {
+        User.setUsername("");
+        User.setDesignation(0);
+
         super();
 
 
