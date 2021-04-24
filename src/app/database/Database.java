@@ -159,17 +159,21 @@ public class Database {
 
 	public static int[] returnArray(String columnName) {
 		String fromDatabase;
-		int[] result = null;
+		int[] result = new int[] {};
 		try {
-			fromDatabase = rs.getArray(columnName).toString(); //array to string
-			fromDatabase = fromDatabase.substring(1, fromDatabase.length() - 1); //remove the brackets
-			String[] stringArr = fromDatabase.split(",");
 
-			//translate string array to int array
-			result = new int[stringArr.length];
-			for (int i = 0; i < stringArr.length; i++) {
-				result[i] = Integer.parseInt(stringArr[i]);
+			if (rs.getArray(columnName) != null) {
+				fromDatabase = rs.getArray(columnName).toString(); //array to string
+				fromDatabase = fromDatabase.substring(1, fromDatabase.length() - 1); //remove the brackets
+				String[] stringArr = fromDatabase.split(",");
+
+				//translate string array to int array
+				result = new int[stringArr.length];
+				for (int i = 0; i < stringArr.length; i++) {
+					result[i] = Integer.parseInt(stringArr[i]);
+				}
 			}
+
 
 			//if (fromDatabase != null) result = (int[]) fromDatabase.getArray();
 		} catch (SQLException e) {
