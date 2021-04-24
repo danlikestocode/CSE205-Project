@@ -18,7 +18,7 @@ public class RegisterWindow extends Window {
     JLabel errorLabel;
 
     //Creates the Main Page which will later change when buttons are clicked
-    public RegisterWindow() {
+    public RegisterWindow(int designation) {
 
         super();
 

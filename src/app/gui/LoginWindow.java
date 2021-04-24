@@ -167,7 +167,7 @@ public class LoginWindow extends Window {
                 break;
                 case "Register":
                     window.dispose();
-                    new RegisterWindow();
+                    new RegisterWindow(0);
                 break;
             }
         }
