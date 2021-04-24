@@ -16,9 +16,12 @@ public class Cart {
     public static void addProduct (int id) {
         //if the current array is too small
         updateLength(id);
-        products[id]++;
-
+        Database.searchForInt("products", "productid", id);
+        if (products[id] < Database.returnCurrentInt("stock")) {
+            products[id]++;
+        }
         //printCart(); // for deubgging
+
         // update the db with the cart   vvv
         boolean success = Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
         //System.out.println(success); // for debugging

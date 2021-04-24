@@ -237,6 +237,23 @@ public class Database {
 		return successful;
 	}
 
+	public static boolean updateDouble(String datatable, String columnName, String identifyingID, double newValue, String idColumnName) {
+
+		boolean successful = false;
+
+
+		try {
+			//sends the command to update the specified column in the specified table
+			s.execute("Update " + datatable + " set " + columnName + " = " + newValue + " where " + idColumnName + " = \'" + identifyingID + "\';");
+			successful = true;
+
+		} catch (SQLException e) {
+			successful = false;
+		}
+		//returns whether the update was successful
+		return successful;
+	}
+
 
 	public static boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
 

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class EmployeeCatalogWindow extends Window{
 
@@ -150,13 +151,23 @@ public class EmployeeCatalogWindow extends Window{
         }
     }
 
+    private JTextField[] names = new JTextField[] {};
+    private JTextField[] prices = new JTextField[] {};
+    private JTextField[] stocks = new JTextField[] {};
+
     private class UpdateHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             int id = Integer.parseInt(e.getActionCommand());
-            //Database.searchForInt("products", "productid", id);
-            //Database.updateString("products", "productname", id, )
+            Database.updateString("products", "productname", Integer.toString(id), names[id].getText(), "productid");
+            Database.updateInt("products", "stock", Integer.toString(id), Integer.parseInt(stocks[id].getText()), "productid");
+            Database.updateDouble("products", "price", Integer.toString(id), Double.parseDouble(prices[id].getText()), "productid");
+
         }
     }
+
+    private UpdateHandler updateHandler = new UpdateHandler();
+
+
 
     private JPanel showProductPanels(String search) {
         // reinit the panel every time to start fresh
@@ -168,6 +179,9 @@ public class EmployeeCatalogWindow extends Window{
         while (true) {
             try {
                 rs.next();
+
+                int idInt = rs.getInt("productid");
+                String idString = Integer.toString(idInt);
 
                 // A product panel
                 productPanel = new JPanel();
@@ -183,12 +197,23 @@ public class EmployeeCatalogWindow extends Window{
                 label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
                 panel.add(label);
 
+
+
                 name = new JTextField();
                 name.setFont(smallFont);
                 name.setPreferredSize(new Dimension(150, 50));
                 name.setMaximumSize(new Dimension(400, 50));
                 name.setBorder(new LineBorder(Color.BLACK, 2));
                 panel.add(name);
+
+                if (idInt >= names.length) {
+                    JTextField[] temp = names;
+                    names = new JTextField[idInt + 1];
+                    for (int i = 0; i < temp.length; i++) {
+                        names[i] = temp[i];
+                    }
+                }
+                names[idInt] = name;
 
                 productPanel.add(panel);
 
@@ -202,12 +227,22 @@ public class EmployeeCatalogWindow extends Window{
                 label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
                 panel.add(label);
 
+
                 price = new JTextField();
                 price.setFont(smallFont);
                 price.setPreferredSize(new Dimension(100, 50));
                 price.setMaximumSize(new Dimension(400, 50));
                 price.setBorder(new LineBorder(Color.BLACK, 2));
                 panel.add(price);
+
+                if (idInt >= prices.length) {
+                    JTextField[] temp = prices;
+                    prices = new JTextField[idInt + 1];
+                    for (int i = 0; i < temp.length; i++) {
+                        prices[i] = temp[i];
+                    }
+                }
+                prices[idInt] = price;
 
                 productPanel.add(panel);
 
@@ -228,6 +263,15 @@ public class EmployeeCatalogWindow extends Window{
                 stock.setBorder(new LineBorder(Color.BLACK, 2));
                 panel.add(stock);
 
+                if (idInt >= stocks.length) {
+                    JTextField[] temp = stocks;
+                    stocks = new JTextField[idInt + 1];
+                    for (int i = 0; i < temp.length; i++) {
+                        stocks[i] = temp[i];
+                    }
+                }
+                stocks[idInt] = stock;
+
                 productPanel.add(panel);
 
 
@@ -240,8 +284,8 @@ public class EmployeeCatalogWindow extends Window{
                 button.setForeground(Color.BLACK);
                 button.setFont(smallFont);
                 button.setFocusPainted(false);
-                button.addActionListener(buttonHandler);
-                button.setActionCommand(Integer.toString(rs.getInt("productid")));
+                button.addActionListener(updateHandler);
+                button.setActionCommand(idString);
                 panel.add(button);
 
                 productPanel.add(panel);
