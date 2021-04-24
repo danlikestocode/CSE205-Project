@@ -150,7 +150,7 @@ public class LoginWindow extends Window {
 
 
                             Database.searchForString("users", "usernames", User.getUsername());
-                            Cart.loadCart(Database.return2DArray("cart"));
+                            Cart.loadCart(Database.returnArray("cart"));
                         } else { //employee / manager
 
 

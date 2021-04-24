@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import app.database.Cart;
 import app.database.Database;
 
 public class CatalogWindow extends Window {
@@ -120,14 +121,16 @@ public class CatalogWindow extends Window {
     private class ProductAddButtonHandler implements ActionListener {
         // for + buttons
         public void actionPerformed(ActionEvent e) {
-            int id =  Integer.parseInt(e.getActionCommand());
+            // ad to cart 1
+            Cart.addProduct(Integer.parseInt(e.getActionCommand()));
         }
     }
 
     private class ProductSubtractButtonHandler implements ActionListener {
         // for - buttons
         public void actionPerformed(ActionEvent e) {
-            int id =  Integer.parseInt(e.getActionCommand());
+            // remove from cart 1
+            Cart.subtractProduct(Integer.parseInt(e.getActionCommand()));
         }
     }
 
