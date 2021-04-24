@@ -1,6 +1,7 @@
 package app.gui;
 
 import app.database.Database;
+import app.database.User;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -195,21 +196,36 @@ public class RegisterWindow extends Window {
 
          */
         // Back Button
-        panel = new JPanel();
-        panel.setBackground(new Color(241, 250, 238));
 
-        button = new JButton("Back");
-        button.setSize(20, 20);
-        button.setBackground(new Color(168, 218, 220));
-        button.setForeground(Color.BLACK);
-        button.setFont(smallFont);
-        button.setFocusPainted(false);
-        button.addActionListener(buttonHandler);
-        button.setActionCommand("Back");
-        panel.add(button);
+        if(User.getDesignation() != 0){
+            panel = new JPanel();
+            panel.setBackground(new Color(241, 250, 238));
 
+            button = new JButton("Back");
+            button.setSize(20, 20);
+            button.setBackground(new Color(168, 218, 220));
+            button.setForeground(Color.BLACK);
+            button.setFont(smallFont);
+            button.setFocusPainted(false);
+            button.addActionListener(buttonHandler);
+            button.setActionCommand("PendingOrders");
+            panel.add(button);
+        }
+        else if (User.getDesignation() == 0){
+            panel = new JPanel();
+            panel.setBackground(new Color(241, 250, 238));
+
+            button = new JButton("Back");
+            button.setSize(20, 20);
+            button.setBackground(new Color(168, 218, 220));
+            button.setForeground(Color.BLACK);
+            button.setFont(smallFont);
+            button.setFocusPainted(false);
+            button.addActionListener(buttonHandler);
+            button.setActionCommand("Back");
+            panel.add(button);
+        }
         window.add(panel);
-
         // Register Button
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
@@ -289,6 +305,9 @@ public class RegisterWindow extends Window {
                     }
 
                 break;
+                case "PendingOrders":
+                    window.dispose();
+                    new PendingOrdersWindow();
             }
         }
     }
