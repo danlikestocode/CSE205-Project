@@ -146,6 +146,7 @@ public class LoginWindow extends Window {
 
                             //static user class updated username and cart
                             User.setUsername(username);
+                            User.setDesignation(designation);
                             Database.searchForString("users", "usernames", User.getUsername());
                             Cart.loadCart(Database.return2DArray("cart"));
                         } else { //employee / manager
