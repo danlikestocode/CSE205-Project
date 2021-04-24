@@ -231,23 +231,23 @@ public class Database {
 		boolean successful = false;
 		//selects the correct ID column for the selected table
 	
-		String[] strArray = new String[newValue.length];
+		String strArray = "{";
 		
 		for (int i =0; i < newValue.length;i++) {
-			strArray[i]=String.valueOf(newValue[i]);
+			strArray=strArray+String.valueOf(newValue[i])+",";
 		}
-		
+		strArray = strArray+"}";
 		try {
 			
-			Array updatedArray = c.createArrayOf("int", strArray);
 			
+			s.execute("UPDATE " + datatable+ " SET " + columnName + " = "+strArray+" WHERE '" + idColumnName + " = '"+identifyingID+"'");
 			System.out.println("UPDATE " + datatable+ " SET " + columnName + " = "+strArray+" WHERE '" + idColumnName + " = '"+identifyingID+"'");
 			
-			PreparedStatement arrayStatement = c.prepareStatement("UPDATE " + datatable+ " SET " + columnName + " = ? WHERE '" + idColumnName + " = '"+identifyingID+"'");
+			//PreparedStatement arrayStatement = c.prepareStatement("UPDATE " + datatable+ " SET " + columnName + " = ? WHERE '" + idColumnName + " = '"+identifyingID+"'");
 			//sends the command to update the specified column in the specified table
 			//s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
-			arrayStatement.setArray(1, updatedArray);
-			arrayStatement.executeUpdate();
+			//arrayStatement.setArray(1, updatedArray);
+			//arrayStatement.executeUpdate();
 			successful = true;
 			
 		
