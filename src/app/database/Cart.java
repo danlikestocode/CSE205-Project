@@ -42,4 +42,18 @@ public class Cart {
         }
     }
 
+    public static void updateLength(int length) {
+        if (length >= products.length) {
+            int[] temp = products;
+            products = new int[length + 1];
+            for (int i = 0; i < temp.length; i++) {
+                products[i] = temp[i];
+            }
+        }
+    }
+
+    public static int[] getProducts() {
+        return products;
+    }
+
 }

@@ -134,6 +134,11 @@ public class CatalogWindow extends Window {
         public void actionPerformed(ActionEvent e) {
             // ad to cart 1
             Cart.addProduct(Integer.parseInt(e.getActionCommand()));
+            window.remove(productPanels);
+            window.add(showProductPanels(searchTextField.getText()));
+            window.setVisible(true);
+            window.repaint();
+            //we have to update the panel every time too
         }
     }
 
@@ -142,6 +147,11 @@ public class CatalogWindow extends Window {
         public void actionPerformed(ActionEvent e) {
             // remove from cart 1
             Cart.subtractProduct(Integer.parseInt(e.getActionCommand()));
+            window.remove(productPanels);
+            window.add(showProductPanels(searchTextField.getText()));
+            window.setVisible(true);
+            window.repaint();
+            //we have to update the panel every time too
         }
     }
 
@@ -187,6 +197,17 @@ public class CatalogWindow extends Window {
                 productPanel.add(button);
 
                 label = new JLabel("Stock: " + Integer.toString(rs.getInt("stock")));
+                label.setFont(smallFont);
+                productPanel.add(label);
+
+                /* // just to make sure the array is large enough to handle this product id
+                Cart.addProduct(rs.getInt("productid"));
+                Cart.subtractProduct(rs.getInt("productid"));
+                */
+
+                Cart.updateLength(rs.getInt("productid"));
+
+                label = new JLabel("Cart: " + Cart.getProducts()[rs.getInt("productid")]);
                 label.setFont(smallFont);
                 productPanel.add(label);
 

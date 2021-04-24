@@ -151,12 +151,12 @@ public class LoginWindow extends Window {
 
                         if (designation != 1 && designation != 2) { // the user is neither a mananager nor employee
                             //regular old customer, go to the catalog
-                            window.dispose();
-                            new CatalogWindow();
-
-
                             Database.searchForString("users", "usernames", User.getUsername());
                             Cart.loadCart(Database.returnArray("cart"));
+
+
+                            window.dispose();
+                            new CatalogWindow();
                         } else { //employee / manager
 
 
