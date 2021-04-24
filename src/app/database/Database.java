@@ -156,12 +156,12 @@ public class Database {
 		return result;
 	}
 
-	public static int[][] return2DArray(String columnName) {
+	public static int[] returnArray(String columnName) {
 		Array fromDatabase;
-		int[][] result = null;
+		int[] result = null;
 		try {
 			fromDatabase = rs.getArray(columnName);
-			if (fromDatabase != null) result = (int[][]) fromDatabase.getArray();
+			if (fromDatabase != null) result = (int[]) fromDatabase.getArray();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -199,6 +199,22 @@ public class Database {
 		try {
 			//sends the command to update the specified column in the specified table
 			s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + identifyingIDColumnName + " = \'" + identifyingID + "\';");
+			successful = true;
+
+		} catch (SQLException e) {
+			successful = false;
+		}
+		//returns whether the update was successful
+		return successful;
+	}
+	
+	public boolean updateArray(String datatable, String columnName, String identifyingID, Array newValue, String idColumnName) {
+		boolean successful = false;
+		//selects the correct ID column for the selected table
+	
+		try {
+			//sends the command to update the specified column in the specified table
+			s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
 			successful = true;
 
 		} catch (SQLException e) {
