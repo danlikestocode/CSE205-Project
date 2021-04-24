@@ -186,6 +186,10 @@ public class CatalogWindow extends Window {
                 button.setActionCommand(Integer.toString(rs.getInt("productid")));
                 productPanel.add(button);
 
+                label = new JLabel("Stock: " + Integer.toString(rs.getInt("stock")));
+                label.setFont(smallFont);
+                productPanel.add(label);
+
                 productPanels.add(productPanel);
 
 
