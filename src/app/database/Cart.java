@@ -15,19 +15,13 @@ public class Cart {
 
     public static void addProduct (int id) {
         //if the current array is too small
-        if (id >= products.length) {
-            int[] temp = products;
-            products = new int[id + 1];
-            for (int i = 0; i < temp.length; i++) {
-                products[i] = temp[i];
-            }
-        }
+        updateLength(id);
         products[id]++;
 
-        printCart(); // for deubgging
+        //printCart(); // for deubgging
         // update the db with the cart   vvv
         boolean success = Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
-        System.out.println(success); // for debugging
+        //System.out.println(success); // for debugging
     }
 
     public static void subtractProduct (int id) {
@@ -36,13 +30,14 @@ public class Cart {
     }
 
     public static void printCart() {
-        System.out.println(); // for debugging
+        //System.out.println(); // for debugging
         for (int i = 0; i < products.length; i++) {
             System.out.print(products[i] + " ");
         }
     }
 
     public static void updateLength(int length) {
+        // for when it's too small
         if (length >= products.length) {
             int[] temp = products;
             products = new int[length + 1];
