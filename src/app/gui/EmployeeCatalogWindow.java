@@ -1,37 +1,37 @@
 package app.gui;
 
+import app.database.Database;
+import app.database.User;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import app.database.Cart;
-import app.database.Database;
-import app.database.User;
+public class EmployeeCatalogWindow extends Window{
 
-public class CatalogWindow extends Window {
-    ChoiceHandler choiceHandler = new ChoiceHandler();
+    ButtonHandler buttonHandler = new ButtonHandler();
 
-    JTextField searchTextField;
     JPanel productPanels;
 
 
-    public CatalogWindow() {
+    JTextField name, price, stock;
+    public EmployeeCatalogWindow() {
         super();
+
 
         // HEADER
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
         // TITLE
-        label = new JLabel("Catalog");
+        label = new JLabel("Employee Catalog");
         label.setForeground(Color.BLACK);
         label.setFont(largeFont);
-        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100)); //Basically Padding
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 100)); //Basically Padding
         panel.add(label);
 
 
@@ -44,7 +44,7 @@ public class CatalogWindow extends Window {
         button.setForeground(Color.BLACK);
         button.setFont(smallFont);
         button.setFocusPainted(false);
-        button.addActionListener(choiceHandler);
+        button.addActionListener(buttonHandler);
         button.setActionCommand("Cart");
         panel.add(button);
 
@@ -55,7 +55,7 @@ public class CatalogWindow extends Window {
             button.setForeground(Color.BLACK);
             button.setFont(smallFont);
             button.setFocusPainted(false);
-            button.addActionListener(choiceHandler);
+            button.addActionListener(buttonHandler);
             button.setActionCommand("PendingOrders");
             panel.add(button);
 
@@ -72,58 +72,84 @@ public class CatalogWindow extends Window {
         button.setForeground(Color.BLACK);
         button.setFont(smallFont);
         button.setFocusPainted(false);
-        button.addActionListener(choiceHandler);
+        button.addActionListener(buttonHandler);
         button.setActionCommand("Logout");
         panel.add(button);
 
         window.add(panel);
 
 
-        // SEARCH
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        // Text Field
-        searchTextField = new JTextField();
-        searchTextField.setFont(smallFont);
-        searchTextField.setPreferredSize(new Dimension(400, 50));
-        searchTextField.setMaximumSize(new Dimension(400, 50));
-        searchTextField.setBorder(new LineBorder(Color.BLACK, 2));
-        searchTextField.addActionListener(choiceHandler);
-        searchTextField.setActionCommand("Search");
-        panel.add(searchTextField);
+        label = new JLabel("Product Name:");
+        label.setForeground(Color.BLACK);
+        label.setFont(largeFont);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
+        panel.add(label);
 
-        // Button
-        button = new JButton("Search");
-        button.setSize(20, 20);
-        button.setBackground(new Color(168, 218, 220));
-        button.setForeground(Color.BLACK);
-        button.setFont(smallFont);
-        button.setFocusPainted(false);
-        button.addActionListener(choiceHandler);
-        button.setActionCommand("Search");
-        panel.add(button);
+        name = new JTextField();
+        name.setFont(smallFont);
+        name.setPreferredSize(new Dimension(400, 50));
+        name.setMaximumSize(new Dimension(400, 50));
+        name.setBorder(new LineBorder(Color.BLACK, 2));
+        name.addActionListener(buttonHandler);
+        name.setActionCommand("Name");
+        panel.add(name);
 
         window.add(panel);
 
 
-        // PRODUCT PANELS
-        window.add(showProductPanels(""));
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
 
-        window.setVisible(true);
+        label = new JLabel("Products Price:");
+        label.setForeground(Color.BLACK);
+        label.setFont(largeFont);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
+        panel.add(label);
+
+        price = new JTextField();
+        price.setFont(smallFont);
+        price.setPreferredSize(new Dimension(400, 50));
+        price.setMaximumSize(new Dimension(400, 50));
+        price.setBorder(new LineBorder(Color.BLACK, 2));
+        price.addActionListener(buttonHandler);
+        price.setActionCommand("Price");
+        panel.add(price);
+
+        window.add(panel);
+
+
+        panel = new JPanel();
+        panel.setBackground(new Color(241, 250, 238));
+
+        label = new JLabel("Products Stock:");
+        label.setForeground(Color.BLACK);
+        label.setFont(largeFont);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
+        panel.add(label);
+
+        stock = new JTextField();
+        stock.setFont(smallFont);
+        stock.setPreferredSize(new Dimension(400, 50));
+        stock.setMaximumSize(new Dimension(400, 50));
+        stock.setBorder(new LineBorder(Color.BLACK, 2));
+        stock.addActionListener(buttonHandler);
+        stock.setActionCommand("Stock");
+        panel.add(stock);
+
+        window.add(panel);
+
+
+
     }
 
-    private class ChoiceHandler implements ActionListener {
+    private class ButtonHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();
             //Changes with your choice with a switch statement
-            switch (choice){
-                //TODO
-                case "Search":
-                    window.remove(productPanels);
-                    window.add(showProductPanels(searchTextField.getText()));
-                    window.setVisible(true);
-                break;
+            switch (choice) {
                 case "Cart":
                     window.dispose();
                     new CartWindow();
@@ -133,27 +159,11 @@ public class CatalogWindow extends Window {
                     new LoginWindow();
                     break;
                 case "PendingOrders":
-
                     window.dispose();
                     new PendingOrdersWindow();
                     break;
+
             }
-        }
-    }
-
-    private class ProductAddButtonHandler implements ActionListener {
-        // for + buttons
-        public void actionPerformed(ActionEvent e) {
-            // ad to cart 1
-            Cart.addProduct(Integer.parseInt(e.getActionCommand()));
-        }
-    }
-
-    private class ProductSubtractButtonHandler implements ActionListener {
-        // for - buttons
-        public void actionPerformed(ActionEvent e) {
-            // remove from cart 1
-            Cart.subtractProduct(Integer.parseInt(e.getActionCommand()));
         }
     }
 
@@ -162,8 +172,6 @@ public class CatalogWindow extends Window {
         productPanels = new JPanel(new FlowLayout());
         productPanels.setBackground(new Color(241, 250, 238));
         JPanel productPanel;
-        ProductAddButtonHandler addButtonHandler = new ProductAddButtonHandler();
-        ProductSubtractButtonHandler subtractButtonHandler = new ProductSubtractButtonHandler();
         ResultSet rs = Database.productResultSet(search);
         while (true) {
             try {
@@ -183,9 +191,16 @@ public class CatalogWindow extends Window {
                 button.setForeground(Color.WHITE);
                 button.setFont(smallFont);
                 button.setFocusPainted(false);
-                button.addActionListener(addButtonHandler);
+
                 button.setActionCommand(Integer.toString(rs.getInt("productid")));
                 productPanel.add(button);
+
+
+                name.setText(rs.getString("productName"));
+
+                price.setText(rs.getString("productPrice"));
+
+                stock.setText(rs.getString("productStock"));
 
                 button = new JButton("-1");
                 button.setSize(20, 20);
@@ -193,7 +208,7 @@ public class CatalogWindow extends Window {
                 button.setForeground(Color.WHITE);
                 button.setFont(smallFont);
                 button.setFocusPainted(false);
-                button.addActionListener(subtractButtonHandler);
+
                 button.setActionCommand(Integer.toString(rs.getInt("productid")));
                 productPanel.add(button);
 
@@ -215,7 +230,5 @@ public class CatalogWindow extends Window {
         }
 
         return productPanels;
-
     }
-
 }
