@@ -9,8 +9,8 @@ public class Main {
         //initializes connection to the database
     	//System.out.println(database.updateString("users", "fname", "UNCATCHABLE","uncatchable"));
     	//System.out.println(database.createProduct("Banana", 69, 6.50, "A not as good fruit"));
-    	database.searchForString("products" , "productName" , "Banana");
-    	System.out.println(database.returnCurrentDouble("stock"));
+    	//database.searchForString("products" , "productName" , "Banana");
+    	//System.out.println(database.returnCurrentDouble("stock"));
     	
         new LoginWindow(); // GUI
     }
