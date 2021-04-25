@@ -220,7 +220,7 @@ public class CatalogWindow extends Window {
 
                 Cart.updateLength(rs.getInt("productid"));
 
-                label = new JLabel("Cart: " + Cart.getProducts()[rs.getInt("productid")]);
+                label = new JLabel("    Cart: " + Cart.getProducts()[rs.getInt("productid")]);
                 label.setFont(smallFont);
                 productPanel.add(label);
 
