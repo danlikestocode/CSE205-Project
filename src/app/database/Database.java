@@ -256,6 +256,23 @@ public class Database {
 		return successful;
 	}
 
+	public static boolean updateBoolean(String datatable, String columnName, String identifyingID, boolean newValue, String idColumnName) {
+
+		boolean successful = false;
+
+
+		try {
+			//sends the command to update the specified column in the specified table
+			s.execute("Update " + datatable + " set " + columnName + " = " + newValue + " where " + idColumnName + " = \'" + identifyingID + "\';");
+			successful = true;
+
+		} catch (SQLException e) {
+			successful = false;
+		}
+		//returns whether the update was successful
+		return successful;
+	}
+
 
 	public static boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
 
@@ -412,7 +429,7 @@ public class Database {
 	public static ResultSet purchaseResultSet() {
 
 		try {
-			rs = s.executeQuery("select * from purchases;");
+			rs = s.executeQuery("select * from purchases where completed = false;");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
