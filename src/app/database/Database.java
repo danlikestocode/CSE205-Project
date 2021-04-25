@@ -408,4 +408,15 @@ public class Database {
 		}
 		return rs;
 	}
+
+	public static ResultSet purchaseResultSet() {
+
+		try {
+			rs = s.executeQuery("select * from purchases;");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return rs;
+	}
 }

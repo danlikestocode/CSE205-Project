@@ -1,15 +1,21 @@
 package app.gui;
 
+import app.database.Database;
 import app.database.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PendingOrdersWindow extends Window{
 
     ChoiceHandler choiceHandler = new ChoiceHandler();
+    ApproveHandler approveHandler = new ApproveHandler();
+
+    JPanel productPanels;
 
     public PendingOrdersWindow(){
         super();
@@ -69,13 +75,12 @@ public class PendingOrdersWindow extends Window{
 
         window.add(panel);
 
-        product(234543532, 3.5);
-        product(1234324,4.8);
+        window.add(showPurchasePanels());
 
         window.setVisible(true);
     }
 
-    public void product(int orderId, double costOfProduct){
+    /*public void product(int orderId, double costOfProduct){
         panel = new JPanel();
         panel.setBackground(new Color(211,211,211));
         panel.setBorder(BorderFactory.createLineBorder(Color.black));   //Adds a border around each product
@@ -108,7 +113,8 @@ public class PendingOrdersWindow extends Window{
         panel.add(button);
 
         window.add(panel);
-    }
+    }*/
+
     //Add a button to pending order
     private class ChoiceHandler implements ActionListener {
         @Override
@@ -129,4 +135,59 @@ public class PendingOrdersWindow extends Window{
             }
         }
     }
+
+    private class ApproveHandler implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    private JPanel showPurchasePanels() {
+        // reinit the panel every time to start fresh
+        productPanels = new JPanel();
+        productPanels.setLayout(new BoxLayout(productPanels, BoxLayout.Y_AXIS));
+        productPanels.setBackground(new Color(241, 250, 238));
+        JPanel productPanel;
+        ResultSet rs = Database.purchaseResultSet();
+        while (true) {
+            try {
+                rs.next();
+
+                // A product panel
+                productPanel = new JPanel();
+                productPanel.setBackground(new Color(200, 200, 200));
+
+                label = new JLabel(Integer.toString(rs.getInt("ordernumber")));
+                label.setFont(smallFont);
+                productPanel.add(label);
+
+                button = new JButton("Approve");
+                button.setSize(60, 20);
+                button.setBackground(new Color(30, 30, 30));
+                button.setForeground(Color.WHITE);
+                button.setFont(smallFont);
+                button.setFocusPainted(false);
+                button.addActionListener(approveHandler);
+                button.setActionCommand(Integer.toString(rs.getInt("ordernumber")));
+                productPanel.add(button);
+
+                productPanels.add(productPanel);
+            } catch (SQLException e) {
+                break;
+            }
+        }
+
+        //this is when nothing was added to it
+        if (productPanels.getComponents().length == 0) {
+            label = new JLabel("No products found.");
+            label.setFont(smallFont);
+            productPanels.add(label);
+        }
+
+
+        return productPanels;
+
+    }
+
 }

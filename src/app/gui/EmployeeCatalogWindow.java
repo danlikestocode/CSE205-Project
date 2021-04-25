@@ -176,7 +176,7 @@ public class EmployeeCatalogWindow extends Window{
         productPanels.setLayout(new BoxLayout(productPanels, BoxLayout.Y_AXIS));
         productPanels.setBackground(new Color(241, 250, 238));
         JPanel productPanel;
-        ResultSet rs = Database.productResultSet(search);
+        ResultSet rs = Database.purchaseResultSet();
         while (true) {
             try {
                 rs.next();
