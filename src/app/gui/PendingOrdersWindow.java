@@ -127,6 +127,7 @@ public class PendingOrdersWindow extends Window{
                     window.dispose();
                     new RegisterWindow(User.getDesignation());
                 case "Checkout":
+
                     window.dispose();
 
             }
