@@ -308,6 +308,21 @@ public class Database {
 		return successful;
 	}
 
+	public static void checkoutCart(String username) {
+
+		try {
+
+			rs = s.executeQuery("SELECT cart FROM users WHERE usernames = '" + username + "';");
+			System.out.println(rs);
+
+
+		} catch (SQLException e) {
+			System.out.println("YOU MESSED UP DAN RECODE SOMETHING " + e);
+		}
+
+
+	}
+
 
 	public static ResultSet productResultSet(String search) {
 
