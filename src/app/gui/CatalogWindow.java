@@ -24,6 +24,8 @@ public class CatalogWindow extends Window {
 
     public CatalogWindow() {
         super();
+        Database.searchForString("users", "usernames", User.getUsername());
+        Cart.loadCart(Database.returnArray("cart"));
 
         // HEADER
         panel = new JPanel();
@@ -138,6 +140,8 @@ public class CatalogWindow extends Window {
                     break;
                 case "Checkout":
                     Database.checkoutCart(User.getUsername());
+                    window.dispose();
+                    new OrderSuccessfulWindow();
             }
         }
     }

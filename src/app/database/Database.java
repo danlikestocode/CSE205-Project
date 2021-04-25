@@ -321,6 +321,8 @@ public class Database {
 		int cApples, cBanana, cSoda, cPear, cCheese, cChips;
 		double totalPrice;
 
+		String test = "9";
+
 
 
 		String strCart = "";

@@ -56,7 +56,7 @@ public class OrderSuccessfulWindow extends Window{
             switch (choice) {
                 case "Catalog":
                 window.dispose();
-                new EmployeeCatalogWindow();
+                new CatalogWindow();
                 break;
             }
         }
