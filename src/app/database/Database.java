@@ -2,6 +2,7 @@ package app.database;
 
 import java.sql.*;
 import java.util.Arrays;
+import java.util.Random;
 
 //This class is our database controller it contains the methods that read, write and search the database.
 public class Database {
@@ -306,6 +307,95 @@ public class Database {
 		}
 
 		return successful;
+	}
+
+	public static void checkoutCart(String username) {
+		Random rnd = new Random();
+		// 1 = Apples - Price: 1.5
+		// 2 = Banana - Price: 6.5
+		// 3 = Soda - Price: 8.99
+		// 4 = Pear - Price: 1.3
+		// 5 = Cheese - Price: 19.99
+		// 6 = Chips - Price: 0.3
+		int aApples, aBanana, aSoda, aPear, aCheese, aChips;
+		int cApples, cBanana, cSoda, cPear, cCheese, cChips;
+		double totalPrice;
+
+		String test = "394u230";
+
+
+
+		String strCart = "";
+		int[] cart = null;
+		int orderNumber  = rnd.nextInt(999999999);
+
+		Database.searchForString("users", "usernames", User.getUsername());
+		cart = Database.returnArray("cart");
+		aApples = cart[1];
+		aBanana = cart[2];
+		aSoda = cart[3];
+		aPear = cart[4];
+		aCheese = cart[5];
+		aChips = cart[6];
+
+
+		strCart = Arrays.toString(cart);
+		System.out.println(strCart);
+		strCart = strCart.replaceAll("\\[" , "{").replaceAll("\\]", "}");
+
+
+
+
+		try {
+			s.execute("UPDATE users SET cart = '{0, 0, 0, 0, 0, 0, 0}' where usernames = '" + User.getUsername() + "';");
+			s.execute("INSERT INTO purchases VALUES (' " + orderNumber + " ' , ' " + strCart + "' , 'false');");
+
+		    rs = s.executeQuery("SELECT stock FROM products WHERE productname = 'Apples';");
+		    rs.next();
+		    cApples = rs.getInt("stock");
+		    cApples = cApples - aApples;
+
+			rs = s.executeQuery("SELECT stock FROM products WHERE productname = 'Banana';");
+			rs.next();
+			cBanana = rs.getInt("stock");
+			cBanana = cBanana - aBanana;
+
+			rs = s.executeQuery("SELECT stock FROM products WHERE productname = 'Soda';");
+			rs.next();
+			cSoda = rs.getInt("stock");
+			cSoda = cSoda - aSoda;
+
+			rs = s.executeQuery("SELECT stock FROM products WHERE productname = 'Pear';");
+			rs.next();
+			cPear = rs.getInt("stock");
+			cPear = cPear - aPear;
+
+			rs = s.executeQuery("SELECT stock FROM products WHERE productname = 'Cheese';");
+			rs.next();
+			cCheese = rs.getInt("stock");
+			cCheese = cCheese - aCheese;
+
+			rs = s.executeQuery("SELECT stock FROM products WHERE productname = 'Chips';");
+			rs.next();
+			cChips = rs.getInt("stock");
+			cChips = cChips - aChips;
+
+			s.execute("UPDATE products SET stock = '" + String.valueOf(cApples)+ "' WHERE productname = 'Apples';");
+			s.execute("UPDATE products SET stock = '" + String.valueOf(cBanana)+ "' WHERE productname = 'Banana';");
+			s.execute("UPDATE products SET stock = '" + String.valueOf(cSoda)+ "' WHERE productname = 'Soda';");
+			s.execute("UPDATE products SET stock = '" + String.valueOf(cPear)+ "' WHERE productname = 'Pear';");
+			s.execute("UPDATE products SET stock = '" + String.valueOf(cCheese)+ "' WHERE productname = 'Cheese';");
+			s.execute("UPDATE products SET stock = '" + String.valueOf(cChips)+ "' WHERE productname = 'Chips';");
+
+
+			totalPrice = (aApples * 1.5) + (aBanana * 6.5) + (aSoda * 8.99) + (aPear * 1.3) + (aCheese * 19.99) + (aChips * .3);
+			System.out.println(totalPrice);
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
+
 	}
 
 

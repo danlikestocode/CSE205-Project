@@ -29,7 +29,9 @@ public class Cart {
 
     public static void subtractProduct (int id) {
         if (products[id] > 0) products[id]--;
-        printCart(); // for debugging
+//        printCart(); // for debugging
+        boolean success = Database.updateArray("users", "cart", User.getUsername(), products, "usernames");
+
     }
 
     public static void printCart() {

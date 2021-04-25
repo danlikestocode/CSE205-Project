@@ -19,11 +19,13 @@ public class CatalogWindow extends Window {
 
     JTextField searchTextField;
     JPanel productPanels;
-    JPanel userCarts;
+
 
 
     public CatalogWindow() {
         super();
+        Database.searchForString("users", "usernames", User.getUsername());
+        Cart.loadCart(Database.returnArray("cart"));
 
         // HEADER
         panel = new JPanel();
@@ -53,6 +55,18 @@ public class CatalogWindow extends Window {
         else{
 
         }
+        //Checkout
+        button = new JButton("Check-Out");
+        button.setSize(20, 20);
+        button.setBackground(new Color(168, 218, 220));
+        button.setForeground(Color.BLACK);
+        button.setFont(smallFont);
+        button.setFocusPainted(false);
+        button.addActionListener(choiceHandler);
+        button.setActionCommand("Checkout");
+        panel.add(button);
+
+        window.add(panel);
 
         // Logout
         button = new JButton("Logout");
@@ -121,10 +135,13 @@ public class CatalogWindow extends Window {
                     new LoginWindow();
                     break;
                 case "PendingOrders":
-
                     window.dispose();
                     new PendingOrdersWindow();
                     break;
+                case "Checkout":
+                    Database.checkoutCart(User.getUsername());
+                    window.dispose();
+                    new OrderSuccessfulWindow();
             }
         }
     }
@@ -207,15 +224,11 @@ public class CatalogWindow extends Window {
 
                 Cart.updateLength(rs.getInt("productid"));
 
-                label = new JLabel("Cart: " + Cart.getProducts()[rs.getInt("productid")]);
+                label = new JLabel("    Cart: " + Cart.getProducts()[rs.getInt("productid")]);
                 label.setFont(smallFont);
                 productPanel.add(label);
 
                 productPanels.add(productPanel);
-
-
-
-
             } catch (SQLException e) {
                 break;
             }
