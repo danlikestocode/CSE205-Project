@@ -12,7 +12,7 @@ public class Cart {
             products = cart;
         }
     }
-
+    //Comment
     public static void addProduct (int id) {
         //if the current array is too small
         updateLength(id);
