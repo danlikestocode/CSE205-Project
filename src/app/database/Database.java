@@ -10,6 +10,7 @@ public class Database {
 	static Statement s;
 	static Connection c;
 	static ResultSet rs;
+	public static double totalPrice;
 
 	public Database() {
 		databaseconnect();
@@ -258,13 +259,13 @@ public class Database {
 
 	public static boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
 
-	
+
 		boolean successful = false;
 		//selects the correct ID column for the selected table
-	
+
 		String strArray = "{"+newValue[0];
-		
-		
+
+
 		for (int i =1; i < newValue.length;i++) {
 			strArray=strArray+","+newValue[i];
 		}
@@ -273,19 +274,19 @@ public class Database {
 		//debug print
 		//System.out.println("UPDATE " + datatable+ " SET " + columnName + " = '"+strArray+"' WHERE " + idColumnName + " = '"+identifyingID+"';");
 		try {
-			
-			
+
+
 			s.execute("UPDATE " + datatable+ " SET " + columnName + " = '"+strArray+"' WHERE " + idColumnName + " = '"+identifyingID+"'");
-			
-			
+
+
 			//PreparedStatement arrayStatement = c.prepareStatement("UPDATE " + datatable+ " SET " + columnName + " = ? WHERE '" + idColumnName + " = '"+identifyingID+"'");
 			//sends the command to update the specified column in the specified table
 			//s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
 			//arrayStatement.setArray(1, updatedArray);
 			//arrayStatement.executeUpdate();
 			successful = true;
-			
-		
+
+
 
 		} catch (SQLException e) {
 			successful = false;
@@ -319,9 +320,6 @@ public class Database {
 		// 6 = Chips - Price: 0.3
 		int aApples, aBanana, aSoda, aPear, aCheese, aChips;
 		int cApples, cBanana, cSoda, cPear, cCheese, cChips;
-		double totalPrice;
-
-		String test = "394u230";
 
 
 
