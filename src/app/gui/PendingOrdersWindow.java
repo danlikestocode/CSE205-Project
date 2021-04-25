@@ -139,7 +139,13 @@ public class PendingOrdersWindow extends Window{
     private class ApproveHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            Database.searchForInt("purchases", "ordernumber", Integer.parseInt(e.getActionCommand()));
+            Database.updateBoolean("purchases", "completed", e.getActionCommand(), true, "ordernumber");
 
+            window.remove(productPanels);
+            window.add(showPurchasePanels());
+            window.setVisible(true);
+            window.repaint();
         }
     }
 
@@ -180,7 +186,7 @@ public class PendingOrdersWindow extends Window{
 
         //this is when nothing was added to it
         if (productPanels.getComponents().length == 0) {
-            label = new JLabel("No products found.");
+            label = new JLabel("No purchases found.");
             label.setFont(smallFont);
             productPanels.add(label);
         }
