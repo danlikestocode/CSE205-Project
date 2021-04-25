@@ -126,10 +126,6 @@ public class PendingOrdersWindow extends Window{
                 case "Register":
                     window.dispose();
                     new RegisterWindow(User.getDesignation());
-                case "Checkout":
-
-                    window.dispose();
-
             }
         }
     }
