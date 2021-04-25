@@ -19,7 +19,7 @@ public class CatalogWindow extends Window {
 
     JTextField searchTextField;
     JPanel productPanels;
-    JPanel userCarts;
+
 
 
     public CatalogWindow() {
@@ -53,6 +53,18 @@ public class CatalogWindow extends Window {
         else{
 
         }
+        //Checkout
+        button = new JButton("Check-Out");
+        button.setSize(20, 20);
+        button.setBackground(new Color(168, 218, 220));
+        button.setForeground(Color.BLACK);
+        button.setFont(smallFont);
+        button.setFocusPainted(false);
+        button.addActionListener(choiceHandler);
+        button.setActionCommand("Checkout");
+        panel.add(button);
+
+        window.add(panel);
 
         // Logout
         button = new JButton("Logout");
@@ -212,10 +224,6 @@ public class CatalogWindow extends Window {
                 productPanel.add(label);
 
                 productPanels.add(productPanel);
-
-
-
-
             } catch (SQLException e) {
                 break;
             }
