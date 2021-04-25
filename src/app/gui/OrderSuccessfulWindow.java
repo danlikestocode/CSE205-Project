@@ -1,5 +1,6 @@
 package app.gui;
 
+import app.database.Database;
 import app.database.User;
 
 import javax.swing.*;
@@ -34,14 +35,14 @@ public class OrderSuccessfulWindow extends Window{
 
         window.add(panel);
 
-        label = new JLabel("Your Cart: ");
-        label.setForeground(Color.BLACK);
-        label.setFont(smallFont);
-        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 500, 750)); //Basically Padding
-        label.setBackground(Color.BLACK);
-        window.add(label);
+//        label = new JLabel("Your Cart: ");
+//        label.setForeground(Color.BLACK);
+//        label.setFont(smallFont);
+//        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 500, 750)); //Basically Padding
+//        label.setBackground(Color.BLACK);
+//        window.add(label);
 
-        label = new JLabel("Your Total: ");
+        label = new JLabel("Your Total: $" + Database.totalPrice );
         label.setForeground(Color.BLACK);
         label.setFont(smallFont);
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); //Basically Padding
