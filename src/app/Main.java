@@ -5,9 +5,6 @@ import app.database.*;
 public class Main {
 	static Database database = new Database();
 
-	// what are these? they aren't being used anywhere
-    //String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
-
     public static void main(String[] args) {
         //initializes connection to the database
 

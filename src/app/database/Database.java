@@ -326,7 +326,7 @@ public class Database {
 
 		return successful;
 	}
-
+	//method runs to check out cart and get total and make appropriate changes
 	public static void checkoutCart(String username) {
 		Random rnd = new Random();
 		// 1 = Apples - Price: 1.5
@@ -344,6 +344,7 @@ public class Database {
 		int[] cart = null;
 		int orderNumber  = rnd.nextInt(999999999);
 
+		//uses database to get cart with amount of each product and assigns values to variables
 		Database.searchForString("users", "usernames", User.getUsername());
 		cart = Database.returnArray("cart");
 		aApples = cart[1];
@@ -353,7 +354,7 @@ public class Database {
 		aCheese = cart[5];
 		aChips = cart[6];
 
-
+		// prints out amount of each products you are checking out with.
 		strCart = Arrays.toString(cart);
 		System.out.println(strCart);
 		strCart = strCart.replaceAll("\\[" , "{").replaceAll("\\]", "}");
@@ -402,7 +403,7 @@ public class Database {
 			s.execute("UPDATE products SET stock = '" + String.valueOf(cCheese)+ "' WHERE productname = 'Cheese';");
 			s.execute("UPDATE products SET stock = '" + String.valueOf(cChips)+ "' WHERE productname = 'Chips';");
 
-
+			//gets total price and prints it
 			totalPrice = (aApples * 1.5) + (aBanana * 6.5) + (aSoda * 8.99) + (aPear * 1.3) + (aCheese * 19.99) + (aChips * .3);
 			System.out.println(totalPrice);
 
