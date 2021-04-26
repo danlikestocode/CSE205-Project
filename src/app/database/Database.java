@@ -159,6 +159,8 @@ public class Database {
 		return result;
 	}
 
+
+	//Retruns an array of objects from the cart
 	public static int[] returnArray(String columnName) {
 		String fromDatabase;
 		int[] result = new int[] {};
@@ -175,45 +177,37 @@ public class Database {
 					result[i] = Integer.parseInt(stringArr[i]);
 				}
 			}
-
-
 			//if (fromDatabase != null) result = (int[]) fromDatabase.getArray();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return result;
-
 	}
 
+	//Method to create a user into postgres
 	public static boolean createUser(String usernames, String password, String email, String fname, String lname,
 									 String address, int designation) {
 		boolean successful = false;
-
 		try {
-
+			//Creates the user
 			s.addBatch("Insert into users VALUES ('" + usernames + "','" + password + "','" + email + "','" + fname + "','"
 					+ lname + "','" + address + "', NULL ," + designation + ");");
 			s.executeBatch();
 			successful = true;
 		} catch (SQLException e) {
-
+			//Fails to make the user
 			successful = false;
 		}
-
 		return successful;
 	}
 
+	//Update something in the database that is string base
 	public static boolean updateString(String datatable, String columnName, String identifyingID, String newValue, String idColumnName) {
-		
 		boolean successful = false;
-
-
 		try {
 			//sends the command to update the specified column in the specified table
 			s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
 			successful = true;
-
 		} catch (SQLException e) {
 			successful = false;
 		}
@@ -222,11 +216,9 @@ public class Database {
 	}
 	
 //<<<<<<< HEAD
+	//Update something form the database that is int base
 	public static boolean updateInt(String datatable, String columnName, String identifyingID, int newValue, String idColumnName) {
-		
 		boolean successful = false;
-
-
 		try {
 			//sends the command to update the specified column in the specified table
 			s.execute("Update " + datatable + " set " + columnName + " = " + newValue + " where " + idColumnName + " = \'" + identifyingID + "\';");
@@ -239,16 +231,13 @@ public class Database {
 		return successful;
 	}
 
+	//Update something in the database that is of a double
 	public static boolean updateDouble(String datatable, String columnName, String identifyingID, double newValue, String idColumnName) {
-
 		boolean successful = false;
-
-
 		try {
 			//sends the command to update the specified column in the specified table
 			s.execute("Update " + datatable + " set " + columnName + " = " + newValue + " where " + idColumnName + " = \'" + identifyingID + "\';");
 			successful = true;
-
 		} catch (SQLException e) {
 			successful = false;
 		}
@@ -256,16 +245,13 @@ public class Database {
 		return successful;
 	}
 
+	//Update something in the database to be either true or false
 	public static boolean updateBoolean(String datatable, String columnName, String identifyingID, boolean newValue, String idColumnName) {
-
 		boolean successful = false;
-
-
 		try {
 			//sends the command to update the specified column in the specified table
 			s.execute("Update " + datatable + " set " + columnName + " = " + newValue + " where " + idColumnName + " = \'" + identifyingID + "\';");
 			successful = true;
-
 		} catch (SQLException e) {
 			successful = false;
 		}
@@ -273,38 +259,27 @@ public class Database {
 		return successful;
 	}
 
-
+	//Update the array in the database
 	public static boolean updateArray(String datatable, String columnName, String identifyingID, int[] newValue, String idColumnName) {
-
-
 		boolean successful = false;
+
 		//selects the correct ID column for the selected table
-
 		String strArray = "{"+newValue[0];
-
 
 		for (int i =1; i < newValue.length;i++) {
 			strArray=strArray+","+newValue[i];
 		}
 		strArray = strArray+"}";
-
 		//debug print
 		//System.out.println("UPDATE " + datatable+ " SET " + columnName + " = '"+strArray+"' WHERE " + idColumnName + " = '"+identifyingID+"';");
 		try {
-
-
 			s.execute("UPDATE " + datatable+ " SET " + columnName + " = '"+strArray+"' WHERE " + idColumnName + " = '"+identifyingID+"'");
-
-
 			//PreparedStatement arrayStatement = c.prepareStatement("UPDATE " + datatable+ " SET " + columnName + " = ? WHERE '" + idColumnName + " = '"+identifyingID+"'");
 			//sends the command to update the specified column in the specified table
 			//s.execute("Update " + datatable + " set " + columnName + " = \'" + newValue + "\' where " + idColumnName + " = \'" + identifyingID + "\';");
 			//arrayStatement.setArray(1, updatedArray);
 			//arrayStatement.executeUpdate();
 			successful = true;
-
-
-
 		} catch (SQLException e) {
 			successful = false;
 		}
@@ -359,9 +334,6 @@ public class Database {
 		System.out.println(strCart);
 		strCart = strCart.replaceAll("\\[" , "{").replaceAll("\\]", "}");
 
-
-
-
 		try {
 			s.execute("UPDATE users SET cart = '{0, 0, 0, 0, 0, 0, 0}' where usernames = '" + User.getUsername() + "';");
 			s.execute("INSERT INTO purchases VALUES (' " + orderNumber + " ' , ' " + strCart + "' , 'false');");
@@ -407,16 +379,14 @@ public class Database {
 			totalPrice = (aApples * 1.5) + (aBanana * 6.5) + (aSoda * 8.99) + (aPear * 1.3) + (aCheese * 19.99) + (aChips * .3);
 			System.out.println(totalPrice);
 
+		//Catches any exceptions and prints the error
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-
-
 	}
 
-
+	//Returns a product that is searched in the project
 	public static ResultSet productResultSet(String search) {
-
 		try {
 			rs = s.executeQuery("select * from products where productname ~* '" + search + "'; ");
 			// ~ means "includes" and the * means it's not case-sensitive
@@ -427,6 +397,7 @@ public class Database {
 		return rs;
 	}
 
+	//Returns a product that is searched in the project
 	public static ResultSet purchaseResultSet() {
 
 		try {

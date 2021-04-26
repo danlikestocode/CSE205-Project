@@ -13,22 +13,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EmployeeCatalogWindow extends Window{
-
+    //Responds to button actions
     ButtonHandler buttonHandler = new ButtonHandler();
 
+    //Internal Field creations to take in info
     JPanel productPanels;
-
-
     JTextField name, price, stock;
+
+    //Makes the window
     public EmployeeCatalogWindow() {
+        //Calls from the Window class
         super();
 
-
-        // HEADER
+        // HEADER: Canvas of the page
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
-        // TITLE
+        // TITLE: Adds the word Employee Catalog to the page
         label = new JLabel("Employee Catalog");
         label.setForeground(Color.BLACK);
         label.setFont(largeFont);
@@ -36,7 +37,7 @@ public class EmployeeCatalogWindow extends Window{
         panel.add(label);
 
 
-        // Pending Orders
+        // Pending Orders: Button which will send the employee to the pending order page
         button = new JButton("Pending Orders");
         button.setSize(20, 20);
         button.setBackground(new Color(168, 218, 220));
@@ -49,7 +50,7 @@ public class EmployeeCatalogWindow extends Window{
 
         window.add(panel);
 
-        // Logout
+        // Logout button
         button = new JButton("Logout");
         button.setSize(20, 20);
         button.setBackground(new Color(168, 218, 220));
@@ -133,15 +134,19 @@ public class EmployeeCatalogWindow extends Window{
 
     }
 
+    //ActionListiner which will check to see if a button is being pushed and preform those actions
     private class ButtonHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();
             //Changes with your choice with a switch statement
             switch (choice) {
+                //Logout from the app
                 case "Logout":
                     window.dispose();
                     new LoginWindow();
                     break;
+
+                //Check for pending orders
                 case "PendingOrders":
                     window.dispose();
                     new PendingOrdersWindow();
@@ -156,6 +161,7 @@ public class EmployeeCatalogWindow extends Window{
     private JTextField[] prices = new JTextField[] {};
     private JTextField[] stocks = new JTextField[] {};
 
+    //Updates the products on the page
     private class UpdateHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             int id = Integer.parseInt(e.getActionCommand());
@@ -165,11 +171,10 @@ public class EmployeeCatalogWindow extends Window{
 
         }
     }
-
     private UpdateHandler updateHandler = new UpdateHandler();
 
 
-
+    //Used to display all products to the page
     private JPanel showProductPanels(String search) {
         // reinit the panel every time to start fresh
         productPanels = new JPanel();
@@ -298,9 +303,6 @@ public class EmployeeCatalogWindow extends Window{
 
                 productPanels.add(productPanel);
 
-
-
-
             } catch (SQLException e) {
                 break;
             }
@@ -312,7 +314,6 @@ public class EmployeeCatalogWindow extends Window{
             label.setFont(smallFont);
             productPanels.add(label);
         }
-
         return productPanels;
     }
 }

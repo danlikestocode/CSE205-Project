@@ -11,13 +11,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PendingOrdersWindow extends Window{
-
+    //Responds to button actions
     ChoiceHandler choiceHandler = new ChoiceHandler();
     ApproveHandler approveHandler = new ApproveHandler();
 
+    //Internal Field creations to take in info
     JPanel productPanels;
 
+    //Makes the window
     public PendingOrdersWindow(){
+        //Calls from the Window class
         super();
 
         // Panel that holds the title and the buttons
@@ -62,6 +65,7 @@ public class PendingOrdersWindow extends Window{
 
         window.add(panel);
 
+        //Register button added to window
         button = new JButton("Register");
         // button.setHorizontalAlignment(0);
         button.setSize(20, 20);
@@ -121,14 +125,19 @@ public class PendingOrdersWindow extends Window{
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();
             switch (choice){
+                //Sends user to the employee catalog
                 case "Catalog":
                     window.dispose();
                     new EmployeeCatalogWindow();
                     break;
+
+                //Sends the user back to the login window
                 case "Logout":
                     window.dispose();
                     new LoginWindow();
                     break;
+
+                //Sends the user to the register window
                 case "Register":
                     window.dispose();
                     new RegisterWindow(User.getDesignation());
@@ -136,6 +145,7 @@ public class PendingOrdersWindow extends Window{
         }
     }
 
+    //Adds function to the approve button to allow a purchase
     private class ApproveHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -149,6 +159,7 @@ public class PendingOrdersWindow extends Window{
         }
     }
 
+    //Shows the product of the page
     private JPanel showPurchasePanels() {
         // reinit the panel every time to start fresh
         productPanels = new JPanel();
@@ -183,17 +194,13 @@ public class PendingOrdersWindow extends Window{
                 break;
             }
         }
-
         //this is when nothing was added to it
         if (productPanels.getComponents().length == 0) {
             label = new JLabel("No purchases found.");
             label.setFont(smallFont);
             productPanels.add(label);
         }
-
-
         return productPanels;
-
     }
 
 }

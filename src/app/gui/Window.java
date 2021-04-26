@@ -17,6 +17,7 @@ public abstract class Window {
     protected Font largeFont = new Font("Apple Casual",Font.BOLD, 60);
     protected Font smallFont = new Font("Apple Casual",Font.BOLD, 30);
 
+    //Creates the window that will be the basic for every class
     protected Window() {
         window.setSize(1280, 720);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

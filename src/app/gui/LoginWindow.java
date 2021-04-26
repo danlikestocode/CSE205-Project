@@ -11,24 +11,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginWindow extends Window {
+    //Responds to button actions
     ChoiceHandler choiceHandler = new ChoiceHandler();
 
+    //Internal Field creations to take in info
     JTextField usernameTextField;
     JPasswordField passwordField;
-
     JLabel errorLabel;
 
+    //Makes the window
     public LoginWindow() {
-
-
+        //Calls from the Window class
         super();
 
+        //Sets the position of the user to customer at the start
         User.setUsername("");
         User.setDesignation(0);
         Cart.loadCart(new int[] {});
 
 
-        // TITLE
+        // TITLE: Adds the word CSE 205 Shopping Project to the page
         label = new JLabel("CSE 205 Shopping Project");
         label.setForeground(Color.BLACK);
         label.setFont(largeFont);
@@ -36,7 +38,7 @@ public class LoginWindow extends Window {
         window.add(label);
 
 
-        // USERNAME
+        // USERNAME Field which creates the field and label
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
@@ -56,7 +58,7 @@ public class LoginWindow extends Window {
         window.add(panel);
 
 
-        // PASSWORD
+        // PASSWORD Field which creates the field and label
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
@@ -76,7 +78,7 @@ public class LoginWindow extends Window {
         window.add(panel);
 
 
-        // BUTTONS
+        // BUTTONS panel which holds the login and register buttons
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
@@ -104,7 +106,7 @@ public class LoginWindow extends Window {
 
         window.add(panel);
 
-        // Error Label
+        // Error Label which will appear when incorrect input is inserted
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
@@ -120,6 +122,7 @@ public class LoginWindow extends Window {
         window.setVisible(true);    //Sets it visible
     }
 
+    //ActionListiner which will check to see if a button is being pushed and preform those actions
     private class ChoiceHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();

@@ -7,12 +7,13 @@ public class Cart {
     //the index of the array represents the product id
     private static int[] products = new int[0];
 
+    //Method to load items to the cart
     public static void loadCart(int[] cart) {
         if (cart != null) {
             products = cart;
         }
     }
-    //Comment
+    //Adds product to the cart
     public static void addProduct (int id) {
         //if the current array is too small
         updateLength(id);
@@ -27,6 +28,7 @@ public class Cart {
         //System.out.println(success); // for debugging
     }
 
+    //Subtracts an item from the cart
     public static void subtractProduct (int id) {
         if (products[id] > 0) products[id]--;
 //        printCart(); // for debugging
@@ -41,6 +43,7 @@ public class Cart {
         }
     }
 
+    //Gets the length of the cart
     public static void updateLength(int length) {
         // for when it's too small
         if (length >= products.length) {
@@ -52,6 +55,7 @@ public class Cart {
         }
     }
 
+    //Getter that returns the products
     public static int[] getProducts() {
         return products;
     }

@@ -10,12 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RegisterWindow extends Window {
+    //Responds to button actions
     ButtonHandler buttonHandler = new ButtonHandler();
 
+    //Internal Field creations to take in info
     JTextField usernameTextField, firstNameTextField, lastNameTextField, emailTextField, addressTextField;
     JPasswordField passwordField;
     JComboBox positionComboBox;
-
     JLabel errorLabel;
 
     //Creates the Main Page which will later change when buttons are clicked
@@ -132,7 +133,7 @@ public class RegisterWindow extends Window {
         window.add(panel);
 
 
-        //Email
+        //Address
         panel = new JPanel();
         panel.setBackground(new Color(241, 250, 238));
 
@@ -240,21 +241,22 @@ public class RegisterWindow extends Window {
 
     }
 
+    //ActionListiner which will check to see if a button is being pushed and preform those actions
     private class ButtonHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String choice = e.getActionCommand();
             //Changes with your choice with a switch statement
             switch (choice){
+                //Send the user to their appropriate designation
                 case "Back":
                     window.dispose();
                     if (User.getDesignation() == 0) { new LoginWindow(); }
                     else { new PendingOrdersWindow(); }
-
                 break;
+
+                //Send to register window
                 case "Register":
-
                     Boolean alreadyExists;
-
                     // First make sure the user filled everything out
                     if ( //If every box is filled
                         !usernameTextField.getText().equals("") && !(new String(passwordField.getPassword())).equals("")
@@ -270,8 +272,6 @@ public class RegisterWindow extends Window {
 
                     // Now let's check to see if their username is unique
                     if (!alreadyExists) { // the username is unique, so we will create a user
-
-
                         Database.createUser(
                             usernameTextField.getText(), new String(passwordField.getPassword()),
                             emailTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(),
@@ -287,7 +287,6 @@ public class RegisterWindow extends Window {
                         errorLabel.setVisible(true);
                         break;
                     }
-
                 break;
             }
         }
